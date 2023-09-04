@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="C Source File">
+<includepath>../Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/LoRaWAN/lorawan_specifics/Core/Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/LoRaWAN/lorawan_specifics/Crypto/Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/LoRaWAN/lorawan_specifics/Mac/Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/LoRaWAN/lorawan_specifics/Mac/Region/Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/LoRaWAN/SX126X/Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/LoRaWAN/Utils/Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/Drivers/CMSIS/Device/ST/BlueNRG_LP/Include</includepath>
+<includepath>../../../HTLRBL32L-SDK/Drivers/CMSIS/Include</includepath>
+<includepath>../../../HTLRBL32L-SDK/Drivers/Peripherals_Drivers/Inc</includepath>
+<includepath>../../../HTLRBL32L-SDK/Middlewares/ST/hal/Inc</includepath>
+
+</language>
+<language name="Object File">
+
+</language>
+<language name="s,S,asm">
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="C Source File">
+<macro>
+<name>DEFAULT_REGION</name><value>5</value>
+</macro>
+<macro>
+<name>PUSH_BUTTON_APP</name><value/>
+</macro>
+<macro>
+<name>USE_FULL_LL_DRIVER</name><value/>
+</macro>
+<macro>
+<name>CONFIG_HW_HSE_TUNE</name><value>32</value>
+</macro>
+<macro>
+<name>CONFIG_HW_SMPS_10uH</name><value/>
+</macro>
+<macro>
+<name>CONFIG_HW_LS_RO</name><value/>
+</macro>
+
+</language>
+<language name="Object File">
+
+</language>
+<language name="s,S,asm">
+
+</language>
+</section>
+</cdtprojectproperties>
