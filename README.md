@@ -5,3 +5,21 @@ saída do componente iMCP-HTLRBL32L-10 da HT Micron. O componente é um System-i
 que possui capacidade de comunicação utilizando os protocolos LoRa e Bluetooth LE. O componente
 integra um microprocessador BlueNRG SoC da ST Microelectronics com interface Bluetooth LE e um
 transciver de RF da Semtec com interface LoRaWAN multi-região.
+
+<div align="center">
+  <img src='https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Hardware/Images/evb-lora.png' id="topology" height="35%" width="35%"/>
+</div>
+
+
+## Links importantes
+
+Ficha técnica: [LINK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Hardware/EvB%20LoRa%20ICA.pdf)
+
+Documentos e arquivos do hardware: [LINK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Hardware)
+
+Documentos e arquivos do firmware: [LINK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware)
+
+## Contato comercial
+
+Para assuntos comerciais, entre em contato com imcp@htmicron.com.br.
+
