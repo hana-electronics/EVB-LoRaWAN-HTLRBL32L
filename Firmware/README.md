@@ -1,3 +1,6 @@
+# Firmware
+Esta área contém arquivos referentes ao firmware do projeto, assim como o [SDK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/HTLRBL32L-SDK) do SIP.
+
 ## Exemplos
 
 
