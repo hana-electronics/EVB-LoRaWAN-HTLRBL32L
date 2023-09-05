@@ -13,11 +13,11 @@ transciver de RF da Semtec com interface LoRaWAN multi-região.
 
 ## Links importantes
 
-Ficha técnica: [LINK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Hardware/EvB%20LoRa%20ICA.pdf)
+Ficha técnica: [link](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Hardware/EvB%20LoRa%20ICA.pdf)
 
-Documentos e arquivos do hardware: [LINK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Hardware)
+Documentos e arquivos do hardware: [link](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Hardware)
 
-Documentos e arquivos do firmware: [LINK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware)
+Documentos e arquivos do firmware: [link](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware)
 
 ## Contato comercial
 
