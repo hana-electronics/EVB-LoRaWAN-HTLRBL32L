@@ -1,5 +1,11 @@
 # Firmware
 Esta área contém arquivos referentes ao firmware do projeto, assim como o [SDK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/HTLRBL32L-SDK) do SIP.
+<br>
+<br>
+
+## Como clonar este branch
+<pre><code id="como-clonar-branch">ADICIONAR LINK AQUI!</code></pre>
+<br>
 
 ## Exemplos
 Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
@@ -12,11 +18,31 @@ Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
 | [Application 3](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/application2) | Exemplo de aplicação 3 | [Link](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/hardware/application3) |
 | [Application 4](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/application2) | Exemplo de aplicação 4 | [Link](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/hardware/application4) |
 | [Web Application](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/application2) | Exemplo de aplicação WEB | N/A | 
+<br>
 
-
-
+## Estrutura de Diretórios
+```
+├─ Firmware
+│   ├── HTLRBL32L-SDK
+│   ├── applications
+|   |    ├── TemplateProject
+|   |    ├── application1
+|   |    ├── application2
+|   |    ├── application3
+|   |    ├── application4
+|   |    ├── webApplication
+|   ├── doc
+|   |    ├── lorawan-keys-apps.pdf
+|   ├── hardware
+|   |    ├── application1
+|   |    ├── application2
+|   |    ├── application3
+|   |    ├── application4
+├── README.md
+```
+<br>
 
 ## Documentação
 
-Para mais informações sobre esse projeto acessar a seção de [Documentação](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/doc)
+Para mais informações sobre esse projeto acessar a seção de [Documentação](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/doc).
 
