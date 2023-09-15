@@ -30,15 +30,15 @@ Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
 |   |    ├── application2
 |   |    ├── application3
 |   |    ├── application4
-|   |    ├── webApplication
+|   |    └── webApplication
 |   ├── doc
-|   |    ├── lorawan-keys-apps.pdf
+|   |    └── lorawan-keys-apps.pdf
 |   ├── hardware
 |   |    ├── application1
 |   |    ├── application2
 |   |    ├── application3
-|   |    ├── application4
-├── README.md
+|   |    └── application4
+└── README.md
 ```
 <br>
 
