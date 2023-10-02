@@ -1,12 +1,5 @@
-# HTLRBL32- Push button LoRaWAN Bluetooth 
-
-- TTN gateway config. tutorial.
-- FW channels config. tutorial.
-- GATTbrowser config. tutorial.
-
-## Application Description
-
-This application works using the android app GATTbrowser to, connected via bluetooth with the device, write the payload and send LoRa packets to the server.
+# Push button - LoRaWAN and BLE
+This application works using the android app GATTbrowser to connected via bluetooth with the device, write the payload and send LoRa packets to the server.
 
 The firmware configures some necessary peripherals, like USART1 (log purposes), GPIOs (radio interruption, etc.) and I2C (STsafe). 
 
@@ -22,8 +15,8 @@ This section describes the basic test setup to running this application.
 * RS232 terminal ([Termite](https://www.compuphase.com/software_termite.htm) is recommended).
 * [ST-Link Debugger](https://www.st.com/en/development-tools/st-link-v2.html) to flash a firmware.
 * [GATTbrowser android app](https://play.google.com/store/apps/details?id=com.renesas.ble.gattbrowser).
-* HTLRBL32 device.
-* Semtech SX1308 LoRa® Gateway.
+* EVB - HTLRBL32.
+* LoRa® Gateway.
 * FTDI (usb-serial converter – one for each device).
 
 # Executing
@@ -39,7 +32,7 @@ Otherwise, you may define the LoRaWAN keys in the 'lorawandefines.h' header file
 2. Clone the examples/SDK branch: <br/>
 
 ```
-git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
+git clone --single-branch --branch master https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
 ```
 
 3. Open WiSE-Studio IDE. 
@@ -70,7 +63,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 7. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
 <div align="center">
-  <img src="Screenshots/termite.JPG">
+  <img src="Screenshots/termite.jpg">
 </div>
 
 <br/>
