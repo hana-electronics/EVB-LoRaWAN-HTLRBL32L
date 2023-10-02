@@ -52,43 +52,43 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 POST_BUILD_OBJCOPY += \
-PB_LoRaWAN_BLE.hex \
+PushButton_LoRaWAN_BLE.hex \
 
 POST_BUILD_PRINT_SIZE += \
 elf-size \
 
 
 # All Target
-all: PB_LoRaWAN_BLE.elf secondary-outputs
+all: PushButton_LoRaWAN_BLE.elf secondary-outputs
 
 # Tool invocations
-PB_LoRaWAN_BLE.elf: $(OBJS) $(USER_OBJS)
+PushButton_LoRaWAN_BLE.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -nostartfiles -nodefaultlibs -Wl,--gc-sections -Wl,-Map="PB_LoRaWAN_BLE.map" -T"../HTLRBL32L.ld" -L"C:\Projetos\EVB-LoRaWAN-HTLRBL32L-master\Firmware\HTLRBL32L-SDK\Libraries" -L"C:\Projetos\EVB-LoRaWAN-HTLRBL32L-master\Firmware\HTLRBL32L-SDK\Middlewares\ST\Bluetooth_LE\library" -L"C:\Projetos\EVB-LoRaWAN-HTLRBL32L-master\Firmware\HTLRBL32L-SDK\Middlewares\ST\cryptolib" --specs=nano.specs -o "PB_LoRaWAN_BLE.elf"  -Wl,--start-group @"objects.list" $(USER_OBJS) $(LIBS) -lm -lc  -Wl,--end-group
+	arm-none-eabi-gcc -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -nostartfiles -nodefaultlibs -Wl,--gc-sections -Wl,-Map="PushButton_LoRaWAN_BLE.map" -T"../HTLRBL32L.ld" -L"C:\Projetos\EVB-LoRaWAN-HTLRBL32L\Firmware\HTLRBL32L-SDK\Libraries" -L"C:\Projetos\EVB-LoRaWAN-HTLRBL32L\Firmware\HTLRBL32L-SDK\Middlewares\ST\Bluetooth_LE\library" -L"C:\Projetos\EVB-LoRaWAN-HTLRBL32L\Firmware\HTLRBL32L-SDK\Middlewares\ST\cryptolib" --specs=nano.specs -o "PushButton_LoRaWAN_BLE.elf"  -Wl,--start-group @"objects.list" $(USER_OBJS) $(LIBS) -lm -lc  -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
 
-PB_LoRaWAN_BLE.hex: PB_LoRaWAN_BLE.elf
+PushButton_LoRaWAN_BLE.hex: PushButton_LoRaWAN_BLE.elf
 	@echo 'Invoking: Generate binary'
-	arm-none-eabi-objcopy -O ihex "PB_LoRaWAN_BLE.elf"  "PB_LoRaWAN_BLE.hex"
+	arm-none-eabi-objcopy -O ihex "PushButton_LoRaWAN_BLE.elf"  "PushButton_LoRaWAN_BLE.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-elf-size: PB_LoRaWAN_BLE.elf
+elf-size: PushButton_LoRaWAN_BLE.elf
 	@echo 'Invoking: Print Size'
-	arm-none-eabi-size -B "PB_LoRaWAN_BLE.elf"
+	arm-none-eabi-size -B "PushButton_LoRaWAN_BLE.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(POST_BUILD_OBJCOPY)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(S_UPPER_DEPS)$(POST_BUILD_PRINT_SIZE)$(C_DEPS) PB_LoRaWAN_BLE.elf PB_LoRaWAN_BLE.bin *.map
+	-$(RM) $(POST_BUILD_OBJCOPY)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(S_UPPER_DEPS)$(POST_BUILD_PRINT_SIZE)$(C_DEPS) PushButton_LoRaWAN_BLE.elf PushButton_LoRaWAN_BLE.bin *.map
 	-@echo ' '
 
 post-build:
-	arm-none-eabi-objcopy -O binary PB_LoRaWAN_BLE.elf PB_LoRaWAN_BLE.bin
+	arm-none-eabi-objcopy -O binary PushButton_LoRaWAN_BLE.elf PushButton_LoRaWAN_BLE.bin
 	-@echo ' '
 
 secondary-outputs: $(POST_BUILD_OBJCOPY) $(POST_BUILD_PRINT_SIZE)

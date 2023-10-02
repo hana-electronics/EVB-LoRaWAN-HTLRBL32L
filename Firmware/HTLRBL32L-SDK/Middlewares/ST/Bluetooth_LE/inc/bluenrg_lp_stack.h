@@ -39,10 +39,13 @@
 #include "ble_status.h"
 #include "bluenrg_lp_api.h"
 #include "bluenrg_lp_events.h"
-#include "utils.h"
 
-/*#define MIN(a,b)                        (((a) < (b))? (a) : (b))
-#define MAX(a,b)                        (((a) > (b))? (a) : (b))*/
+#ifndef MIN
+#define MIN(a,b)                        (((a) < (b))? (a) : (b))
+#endif
+#ifndef MAX
+#define MAX(a,b)                        (((a) > (b))? (a) : (b))
+#endif
 #define DIV_CEIL(x, y)                  (((x) + (y) - 1) / (y))
 
 /** 

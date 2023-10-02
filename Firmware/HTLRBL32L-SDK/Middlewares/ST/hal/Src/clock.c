@@ -39,7 +39,6 @@ const tClockTime CLOCK_SECOND = 1000;
 void SysCount_Handler(void) 
 {
   sys_tick_count++;
-  //printf("%d\r\n", sys_tick_count); //TBR
 }
 
 /*---------------------------------------------------------------------------*/

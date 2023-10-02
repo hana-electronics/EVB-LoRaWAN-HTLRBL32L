@@ -28,7 +28,7 @@
 		<link>
 			<name>HTLRBL32L-SDK</name>
 			<type>2</type>
-			<location>C:/Projetos/EVB-LoRaWAN-HTLRBL32L-master/Firmware/HTLRBL32L-SDK</location>
+			<location>C:/Projetos/EVB-LoRaWAN-HTLRBL32L/Firmware/HTLRBL32L-SDK</location>
 		</link>
 	</linkedResources>
 	<variableList>

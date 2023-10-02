@@ -554,7 +554,7 @@ static uint8_t LSConfig(void)
   LL_RCC_LSCO_SetSource(LL_RCC_LSCO_CLKSOURCE_LSE);
   
    /* Set LSE oscillator drive capability */
-  LL_RCC_LSE_SetDriveCapability(LL_RCC_LSEDRIVE_HIGH);
+  LL_RCC_LSE_SetDriveCapability(LL_RCC_LSEDRIVE_LOW); //drive low
   
   LL_RCC_LSE_Enable();
   while (LL_RCC_LSE_IsReady() == 0U)
