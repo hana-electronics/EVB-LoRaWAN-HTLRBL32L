@@ -12,12 +12,14 @@ Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
 
 | Aplicação  |      Descrição                      | 
 | :---------- | :---------------------------------- | 
-| [Template Project](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/TemplateProject) | Template para iniciar um projeto do zero |
-| [Application 1](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/application1) | Exemplo de aplicação 1 | 
-| [Application 2](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/application2) | Exemplo de aplicação 2 |
-| [Application 3](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/application2) | Exemplo de aplicação 3 | 
-| [Application 4](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/application2) | Exemplo de aplicação 4 | 
-| [Web Application](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/webApplication) | Exemplo de aplicação WEB | 
+|[Template Project](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/0.%20Template_Project)| Template para começar um projeto do zero |
+|[HelloWorld](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/1.%20HelloWorld)|Exemplo que escreve HelloWorld via UART|
+|[Blinking LED](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/2.%20Blinking%20LED)| Exemplo de pisca LED |
+|[LoRaWAN Base](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/3.%20LoRaWAN_Base)| Projeto base para uma aplicação que utilizará LoRA|
+|[PushButton LoRaWAN](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/4.%20PushButton_LoRaWAN)| Exemplo que utiliza um botão para enviar pacotes LoRa|
+|[PushButton LoRaWAN LowPower](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/5.%20PushButton_LoRaWAN_LowPower) |Exemplo anterior mas que entra em Sleep Mode|
+|[LoRaWAN ADC RTC](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/6.%20LoRaWAN_ADC_RTC)|Exemplo que mede a tensão ADC na porta PB1 e envia um HelloWorld por LoRa| 
+|[PushButton LoRaWAN BLE](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/applications/7.%20PushButton_LoRaWAN_BLE)| Exemplo que utiliza do Bluetooth para escrever e enviar pacotes Lora| 
 <br>
 
 ## Estrutura de Diretórios
@@ -25,19 +27,16 @@ Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
 ├─ Firmware
 │   ├── HTLRBL32L-SDK
 │   ├── applications
-|   |    ├── TemplateProject
-|   |    ├── application1
-|   |    ├── application2
-|   |    ├── application3
-|   |    ├── application4
-|   |    └── webApplication
+|   |    ├── Template_Project
+|   |    ├── HelloWorld
+|   |    ├── Blinking LED
+|   |    ├── LoRaWAN Base
+|   |    ├── PushButton LoRaWAN
+|   |    ├── PushButton LoRaWAN LowPower
+|   |    ├── LoRaWAN ADC RTC
+|   |    └── PushButton LoRaWAN BLE
 |   ├── doc
 |   |    └── lorawan-keys-apps.pdf
-|   ├── hardware
-|   |    ├── application1
-|   |    ├── application2
-|   |    ├── application3
-|   |    └── application4
 └── README.md
 ```
 <br>
