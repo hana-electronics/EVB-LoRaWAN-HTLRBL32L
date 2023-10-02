@@ -42,7 +42,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 
 <br/>
 
-5. Click in "Directory...", find and select your cloned folder "HTLRBL32L_app/PB_LoRaWAN_BLE_Project" then click "Finish" to open project. <br/>
+5. Click in "Directory...", find and select your cloned folder "EVB-LoRaWAN-HTLRBL32L" then click "Finish" to open project. <br/>
 
 <div align="center">
   <img src="https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj2.jpg">
