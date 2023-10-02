@@ -1,5 +1,4 @@
 # Template Project
-## Application Description
 This project is a template meant to be used as a foundation, initializing all necessary components (which can be deleted if not used) to start a project from scratch.
 
 ## Test Setup
