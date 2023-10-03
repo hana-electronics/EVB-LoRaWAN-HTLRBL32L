@@ -12,7 +12,6 @@ This section describes the basic test setup to running this application.
 * RS232 terminal ([Termite](https://www.compuphase.com/software_termite.htm) is recommended).
 * [ST-Link Debugger](https://www.st.com/en/development-tools/st-link-v2.html) to flash a firmware.
 * EVB - HTLRBL32.
-* LoRa® Gateway.
 * FTDI (usb-serial converter – one for each device).
 
 # Executing																							  
