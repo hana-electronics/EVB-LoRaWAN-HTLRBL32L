@@ -1,6 +1,7 @@
 # Template Project
 This project is a template meant to be used as a foundation, initializing all necessary components (which can be deleted if not used) to start a project from scratch.
-
+The firmware configures some necessary peripherals, like USART1 (log purposes), GPIOs (radio interruption, etc.) and I2C (STsafe).
+<br/>
 ## Test Setup
 
 This section describes the basic test setup to running this application.
