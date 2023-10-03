@@ -36,7 +36,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 5. Click in "File->Open Projects from File System...": <br/>
 
 <div align="center">
-  <img src="https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj1.jpg">
+  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj1.jpg">
 </div>
 
 <br/>
@@ -44,7 +44,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 5. Click in "Directory...", find and select your cloned folder "Template_Project" then click "Finish" to open project. <br/>
 
 <div align="center">
-  <img src="https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj2.jpg">
+  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj2.jpg">
 </div>
 
 <br/>
@@ -52,7 +52,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 6. Now, you can start your project : <br/>
 
 <div align="center">
-  <img src="https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/template%20(Médio).png">
+  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/template%20(Médio).png">
 </div>
 <br/>
 
