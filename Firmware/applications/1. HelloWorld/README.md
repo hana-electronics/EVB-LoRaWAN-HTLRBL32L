@@ -16,24 +16,15 @@ This section describes the basic test setup to running this application.
 * LoRa® Gateway.
 * FTDI (usb-serial converter – one for each device).
 
-# Executing
-
-1. Set your LoRaWAN keys (OTAA and/or ABP): <br/>
-
-If using the ST-SAFE module:							
-- Flash the binary "[HTLRBL32L_Provisioner.bin](https://github.com/htmicron/htlrbl32l/tree/SDK/Applications/Binaries)" using "[RF-Flasher Utility](https://www.st.com/en/embedded-software/stsw-bnrgflasher.html)".
-- Follow the instructions at the "[HTLRBL32L_Key_Provisioner_Manual](https://github.com/htmicron/htlrbl32l/tree/SDK/Key_Provisioner/Documentation)"
-- Save your setted keys to configure the TTN device later.
-Otherwise, you may define the LoRaWAN keys in the 'lorawandefines.h' header file after step 5.																							  
-
-2. Clone the examples/SDK branch: <br/>
+# Executing																							  
+1. Clone the examples/SDK branch: <br/>
 
 ```
 git clone --single-branch --branch master https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
 ```
 
-3. Open WiSE-Studio IDE. 
-4. Click in "File->Open Projects from File System...": <br/>
+2. Open WiSE-Studio IDE. 
+3. Click in "File->Open Projects from File System...": <br/>
 
 <div align="center">
   <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj1.jpg">
@@ -41,7 +32,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 
 <br/>
 
-5. Click in "Directory...", find and select your cloned folder "HelloWorld" then click "Finish" to open project. <br/>
+3. Click in "Directory...", find and select your cloned folder "HelloWorld" then click "Finish" to open project. <br/>
 
 <div align="center">
   <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj2.jpg">
@@ -49,7 +40,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 
 <br/>
 
-6. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
+4. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
 
 <div align="center">
   <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/run.jpg">
@@ -57,7 +48,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 
 <br/>
 
-7. Open Termite and reset your device to check what was printed on serial. <br/>
+5. Open Termite and reset your device to check what was printed on serial. <br/>
 
 <div align="center">
   <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/HelloWorld.png">
