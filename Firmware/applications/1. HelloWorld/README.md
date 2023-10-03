@@ -1,6 +1,6 @@
 # Hello World
 
-This project writes the phrase 'Hello World' via UART with a small delay between transmissions.
+This project writes the phrase 'Hello World' via UART with a small delay between transmissions. <br/>
 
 The firmware configures some necessary peripherals, like USART1.
 
