@@ -1,14 +1,6 @@
-# HTLRBL32- Push button LoRaWAN Bluetooth 
-
-- TTN gateway config. tutorial.
-- FW channels config. tutorial.
-
-## Application Description
-
-This application works using a button interrupt on pin PA4, which allows the user to command the SiP to write the payload and send LoRa packets to the server.
-
+# Push button LoRaWAN Low Power
+This application puts the SiP in Sleep Mode and wakes it using a button interrupt on pin PA4, which allows the user to command the SiP to write the payload and send LoRa packets to the server.
 The firmware configures some necessary peripherals, like USART1 (log purposes), GPIOs (radio interruption, etc.) and I2C (STsafe). 
-
 More code details can be found reading the 'Code Notes' section further below and the comments written in all header files available in this application.
 
 ## Test Setup
