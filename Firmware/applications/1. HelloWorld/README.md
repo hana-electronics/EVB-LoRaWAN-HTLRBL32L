@@ -11,7 +11,6 @@ This section describes the basic test setup to running this application.
 * [WiSE-Studio IDE](https://www.st.com/en/embedded-software/stsw-wise-studio.html).
 * RS232 terminal ([Termite](https://www.compuphase.com/software_termite.htm) is recommended).
 * [ST-Link Debugger](https://www.st.com/en/development-tools/st-link-v2.html) to flash a firmware.
-* [GATTbrowser android app](https://play.google.com/store/apps/details?id=com.renesas.ble.gattbrowser).
 * EVB - HTLRBL32.
 * LoRa® Gateway.
 * FTDI (usb-serial converter – one for each device).
