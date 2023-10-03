@@ -1,6 +1,7 @@
 # Blinking LED
 
 This project writes the phrase 'Hello World' via UART with a small delay between transmissions.
+The firmware configures some necessary peripherals, like USART1 (log purposes) and GPIOs (radio interruption, etc.).
 
 ## Test Setup
 
