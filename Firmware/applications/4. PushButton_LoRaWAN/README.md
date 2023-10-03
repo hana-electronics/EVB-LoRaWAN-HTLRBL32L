@@ -1,16 +1,8 @@
-# HTLRBL32- Push button LoRaWAN Bluetooth 
-
-- TTN gateway config. tutorial.
-- FW channels config. tutorial.
-
-## Application Description
+# PushButton LoRaWAN
 
 This application works using a button interrupt on pin PA4, which allows the user to command the SiP to write the payload and send LoRa packets to the server.
-
 The firmware configures some necessary peripherals, like USART1 (log purposes), GPIOs (radio interruption, etc.) and I2C (STsafe). 
-
 More code details can be found reading the 'Code Notes' section further below and the comments written in all header files available in this application.
-
 ## Test Setup
 
 This section describes the basic test setup to running this application.
@@ -21,7 +13,7 @@ This section describes the basic test setup to running this application.
 * RS232 terminal ([Termite](https://www.compuphase.com/software_termite.htm) is recommended).
 * [ST-Link Debugger](https://www.st.com/en/development-tools/st-link-v2.html) to flash a firmware.
 * HTLRBL32 device.
-* Semtech SX1308 LoRa® Gateway.
+* LoRa® Gateway.
 * FTDI (usb-serial converter – one for each device).
 
 # Executing
@@ -49,7 +41,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 
 <br/>
 
-5. Click in "Directory...", find and select your cloned folder "HTLRBL32L_app/PB_LoRaWAN_BLE_Project" then click "Finish" to open project. <br/>
+5. Click in "Directory...", find and select your cloned folder "PushButton_LoRaWAN" then click "Finish" to open project. <br/>
 
 <div align="center">
   <img src="Screenshots/wiseopenproj2.jpg">
@@ -68,7 +60,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 7. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
 <div align="center">
-  <img src="Screenshots/termite.jpg">
+  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/PushButton_LoRaWAN.png">
 </div>
 
 <br/>
