@@ -1,6 +1,6 @@
-# Evolution Board - LoRa® e Bluetooth Low Energy®
+# Evaluation Board - LoRa® e Bluetooth Low Energy®
 <div align="center">
-  <img src='https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Hardware/Images/evb%20sem%20fundo.png' id="topology" height="35%" width="35%"/>
+  <img src='/docs/images/evb-lora.png' id="topology" height="35%" width="35%"/>
 </div
 <br>
 <div align="justify">
@@ -9,9 +9,9 @@
 
 ## Links importantes
 
-* [Ficha técnica](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/master/Hardware/EvB%20LoRa%20ICA.pdf)
-* [Arquivos do hardware](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Hardware)
-* [Documentos e arquivos do firmware](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware)
+* [Ficha técnica](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/docs/datacheets/EvB%20LoRa.pdf)
+* [Documentação](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/docs)
+* [Exemplos de aplicações](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/examples)
 
 
 *****
