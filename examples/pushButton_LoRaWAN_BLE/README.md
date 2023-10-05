@@ -39,7 +39,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 4. Click in "File->Open Projects from File System...": <br/>
 
 <div align="center">
-  <img src="Screenshots/wiseopenproj1.jpg">
+  <img src="/docs/images/wiseopenproj1.jpg">
 </div>
 
 <br/>
@@ -47,7 +47,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 5. Click in "Directory...", find and select your cloned folder "PushButton_LoRaWAN_BLE" then click "Finish" to open project. <br/>
 
 <div align="center">
-  <img src="Screenshots/wiseopenproj2.jpg">
+  <img src="/docs/images/wiseopenproj2.jpg">
 </div>
 
 <br/>
@@ -55,7 +55,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 6. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
 
 <div align="center">
-  <img src="Screenshots/run.jpg">
+  <img src="/docs/images/run.jpg">
 </div>
 
 <br/>
@@ -63,7 +63,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 7. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
 <div align="center">
-  <img src="Screenshots/termite.jpg">
+  <img src="/docs/images/termite.jpg">
 </div>
 
 <br/>
@@ -85,7 +85,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 - Open the app and click to open the PushButton device: <br/>
 
 <div align="center">
-  <img src="Screenshots/bledevice.jpg">
+  <img src="/docs/images/bledevice.jpg">
 </div>
 
 <br/>
@@ -93,7 +93,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 - Once the device is connected: <br/>
 
 <div align="center">
-  <img src="Screenshots/connected.jpg">
+  <img src="/docs/images/connected.jpg">
 </div>
 
 <br/>
@@ -101,7 +101,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 - Click here to go into the read/write page: <br/>
 
 <div align="center">
-  <img src="Screenshots/packetpage.jpg">
+  <img src="/docs/images/packetpage.jpg">
 </div>
 
 <br/>
@@ -109,7 +109,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 - You can choose between a string and hexadecimal payload. Write the payload as the picture and click the write button: <br/>
 
 <div align="center">
-  <img src="Screenshots/write.jpg">
+  <img src="/docs/images/write.jpg">
 </div>
 
 <br/>
@@ -117,7 +117,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 - You sent this payload via LoRaWAN to your TTN network server. <br/>
 
 <div align="center">
-  <img src="Screenshots/lorasent.jpg">
+  <img src="/docs/images/lorasent.jpg">
 </div>
 
 <br/> 
