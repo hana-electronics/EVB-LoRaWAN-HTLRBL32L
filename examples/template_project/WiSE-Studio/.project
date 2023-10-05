@@ -26,11 +26,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>HTLRBL32L-SDK</name>
-			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/HTLRBL32L-SDK</locationURI>
-		</link>
-		<link>
 			<name>Inc</name>
 			<type>2</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Inc</locationURI>
