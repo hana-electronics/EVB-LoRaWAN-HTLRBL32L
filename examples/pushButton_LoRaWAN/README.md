@@ -39,7 +39,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 4. Click in "File->Open Projects from File System...": <br/>
 
 <div align="center">
-  <img src="Screenshots/wiseopenproj1.jpg">
+  <img src="/docs/images/wiseopenproj1.jpg">
 </div>
 
 <br/>
@@ -47,7 +47,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 5. Click in "Directory...", find and select your cloned folder "PushButton_LoRaWAN" then click "Finish" to open project. <br/>
 
 <div align="center">
-  <img src="Screenshots/wiseopenproj2.jpg">
+  <img src="/docs/images/wiseopenproj2.jpg">
 </div>
 
 <br/>
@@ -55,7 +55,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 6. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
 
 <div align="center">
-  <img src="Screenshots/run.jpg">
+  <img src="/docs/images/run.jpg">
 </div>
 
 <br/>
@@ -63,7 +63,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 7. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
 <div align="center">
-  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/PushButton_LoRaWAN.png">
+  <img src="/docs/images/PushButton_LoRaWAN.png">
 </div>
 
 <br/>
