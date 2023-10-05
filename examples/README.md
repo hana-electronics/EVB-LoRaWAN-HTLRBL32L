@@ -42,8 +42,6 @@ Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
 |   |    └── lorawan-keys-apps.pdf
 └── README.md
 ```
-<br>
-
 ## Documentação
 
 Para mais informações sobre esse projeto acessar a seção de [Documentação](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/doc).
