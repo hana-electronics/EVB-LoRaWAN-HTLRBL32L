@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2023 Hana Electronics Indústria e Comércio LTDA
+ Copyright (c) 2023 Hana Electronics IndÃºstria e ComÃ©rcio LTDA
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ RNG_HandleTypeDef hrng;
  *
  * LORAWAN_TICK() on the while(1) loop if you're gonna use LoRa
  *
+ * If you're gonna use BLE put the function BLE_STACK_Tick() in the loop;
  */
 
 /**
@@ -57,7 +58,7 @@ int main(void) {
 	uint8_t status_code = 0;
 
 	/* System initialization function */
-	if (SystemInit(SYSCLK_64M, BLE_SYSCLK_NONE) != SUCCESS) {
+	if (SystemInit(SYSCLK_64M, BLE_SYSCLK_32M) != SUCCESS) {
 		/* Error during system clock configuration take appropriate action */
 		while(1);
 	}
@@ -125,4 +126,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Indústria e Comércio LTDA ****** END OF FILE ****/
+/***** Hana Electronics IndÃºstria e ComÃ©rcio LTDA ****** END OF FILE ****/
