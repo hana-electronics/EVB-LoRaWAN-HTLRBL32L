@@ -77,6 +77,7 @@ git clone --single-branch --branch SDK https://github.com/htmicron/htlrbl32l.git
 
 - Create a TTN account at "[TTN website](https://www.thethingsnetwork.org/)" and follow the "[guide](https://www.thethingsnetwork.org/docs/gateways/)" to your gateway. <br/>
 - Use the keys you set earlier to add your device in the TTN network.
+- [More info](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/examples/doc/lorawan-keys-apps.pdf)
 
 ## Extra Documentation
 
