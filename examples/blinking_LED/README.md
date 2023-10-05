@@ -27,7 +27,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 3. Click in "File->Open Projects from File System...": <br/>
 
 <div align="center">
-  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj1.jpg">
+  <img src="/docs/images/wiseopenproj1.jpg">
 </div>
 
 <br/>
@@ -35,7 +35,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 4. Click in "Directory...", find and select your cloned folder "Blinking LED then click "Finish" to open project. <br/>
 
 <div align="center">
-  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/wiseopenproj2.jpg">
+  <img src="/docs/images/wiseopenproj2.jpg">
 </div>
 
 <br/>
@@ -43,7 +43,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 5. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
 
 <div align="center">
-  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/run.jpg">
+  <img src="/docs/images/run.jpg">
 </div>
 
 <br/>
@@ -51,7 +51,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 6. Open Termite and reset your device to check what was printed on serial. Also check the LED on the Board, it must be blinking <br/>
 
 <div align="center">
-  <img src="/Firmware/applications/7.%20PushButton_LoRaWAN_BLE/Screenshots/Blinking%20LED.png">
+  <img src="/docs/images/Blinking%20LED.png">
 </div>
 
 <br/>
