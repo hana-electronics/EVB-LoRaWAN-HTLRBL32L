@@ -15,27 +15,18 @@ This section describes the basic test setup to running this application.
 * [ST-Link Debugger](https://www.st.com/en/development-tools/st-link-v2.html) to flash a firmware.
 * [GATTbrowser android app](https://play.google.com/store/apps/details?id=com.renesas.ble.gattbrowser).
 * EVB - HTLRBL32.
-* LoRa® Gateway.
 * FTDI (usb-serial converter – one for each device).
 
-# Executing
+# Executing																					  
 
-1. Set your LoRaWAN keys (OTAA and/or ABP): <br/>
-
-If using the ST-SAFE module:							
-- Flash the binary "[HTLRBL32L_Provisioner.bin](https://github.com/htmicron/htlrbl32l/tree/SDK/Applications/Binaries)" using "[RF-Flasher Utility](https://www.st.com/en/embedded-software/stsw-bnrgflasher.html)".
-- Follow the instructions at the "[HTLRBL32L_Key_Provisioner_Manual](https://github.com/htmicron/htlrbl32l/tree/SDK/Key_Provisioner/Documentation)"
-- Save your setted keys to configure the TTN device later.
-Otherwise, you may define the LoRaWAN keys in the 'lorawandefines.h' header file after step 5.																							  
-
-2. Clone the examples/SDK branch: <br/>
+1. Clone the examples/SDK branch: <br/>
 
 ```
 git clone --single-branch --branch master https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
 ```
 
-3. Open WiSE-Studio IDE. 
-4. Click in "File->Open Projects from File System...": <br/>
+2. Open WiSE-Studio IDE. 
+3. Click in "File->Open Projects from File System...": <br/>
 
 <div align="center">
   <img src="/docs/images/wiseopenproj1.jpg">
@@ -43,7 +34,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 
 <br/>
 
-5. Click in "Directory...", find and select your cloned folder "LoRaWAN Base" then click "Finish" to open project. <br/>
+4. Click in "Directory...", find and select your cloned folder "LoRaWAN Base" then click "Finish" to open project. <br/>
 
 <div align="center">
   <img src="/docs/images/wiseopenproj2.jpg">
@@ -51,7 +42,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 
 <br/>
 
-6. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
+5. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
 
 <div align="center">
   <img src="/docs/images/run.jpg">
@@ -59,25 +50,12 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 
 <br/>
 
-7. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
+6. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
 <div align="center">
-  <img src="/docs/images/LoraWAN_Base.png">
+   <img src='/docs/images/LoRa%20P2P.png' id="topology" height="65%" width="65%"/>
 </div>
-
 <br/>
-
-# Code Notes
-
--  In the case OTAA is being used, the device will keep sending join requests until it has been able to join the server before entering deep sleep/awaiting user inputs.
--  ST-SAFE is activated by the pre-processor symbol 'HT_CRYPTO'.
--  The 'DEEP_SLEEP_MODE' constant is used to define the behaviour of the SiP when awaiting user input. If disabled, the device will await for the interrupt triggered by the Bluetooth user input. If enabled, the device will enter deep sleep to reduce power consumption, and will only be "woken up" by user input.
-
-# The Things Network (TTN) Configuration
-
-- Create a TTN account at "[TTN website](https://www.thethingsnetwork.org/)" and follow the "[guide](https://www.thethingsnetwork.org/docs/gateways/)" to your gateway. <br/>
-- Use the keys you set earlier to add your device in the TTN network. <br/>
-- [More info](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/examples/doc/lorawan-keys-apps.pdf)
 
 ## Extra Documentation
 
