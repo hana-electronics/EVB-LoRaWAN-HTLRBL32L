@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
 environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.727565106/HE-HTLRBL32L-SDK/delimiter=;
 environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.727565106/HE-HTLRBL32L-SDK/operation=replace
-environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.727565106/HE-HTLRBL32L-SDK/value=C\:\\Projetos\\htlrbl32l-SDK\\Examples\\HTLRBL32L-SDK
+environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.727565106/HE-HTLRBL32L-SDK/value=CHANGE ME
 environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.727565106/PATH/delimiter=;
 environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.727565106/PATH/operation=replace
 environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.727565106/PATH/value=C\:\\WiSE-Studio\\tools\\gcc-arm-none-eabi-9-2019-q4-major\\bin;C\:\\WiSE-Studio\\tools\\openocd-0.12.0\\bin;C\:\\WiSE-Studio\\tools\\coreutils-1.0.0\\bin;C\:\\WiSE-Studio\\jre\\bin\\client;C\:\\WiSE-Studio\\jre\\bin;C\:\\WiSE-Studio
