@@ -13,15 +13,15 @@ Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
 
 | Aplicação  |      Descrição                      | 
 | :---------- | :---------------------------------- | 
-|[template project](/examples/template_project)| Template para começar um projeto do zero |
-|[helloWorld](/examples/helloWorld)|Exemplo que escreve HelloWorld via UART|
-|[blinking LED](/examples/blinking_LED)| Exemplo de pisca LED |
-|[LoRaWAN Base](/examples/LoRaWAN_Base)| Projeto base para uma aplicação que utilizará LoRAWAN|
-|[pushButton LoRaWAN](/examples/pushButton_LoRaWAN)| Exemplo que utiliza um botão para enviar pacotes LoRaWAN|
-|[pushButton LoRaWAN LowPower](/examples/pushButton_LoRaWAN_LowPower) |Exemplo anterior mas que entra em Sleep Mode|
-|[LoRaWAN ADC RTC](/examples/LoRaWAN_ADC_RTC)|Exemplo que mede a tensão ADC na porta PB1 e envia um HelloWorld por LoRaWAN| 
-|[pushButton LoRaWAN BLE](/examples/pushButton_LoRaWAN_BLE)| Exemplo que utiliza do Bluetooth para escrever e enviar pacotes LoRaWAN| 
-|[Lora P2P](/examples/Lora_P2P) |Exemplo de comunicação peer-to-peer via rádio LoRa|
+|[TemplateProject](/examples/TemplateProject)| Template para começar um projeto do zero |
+|[HelloWorld](/examples/helloWorld)|Exemplo que escreve HelloWorld via UART|
+|[BlinkingLED](/examples/BlinkingLED)| Exemplo de pisca LED |
+|[LoRaWANBase](/examples/LoRaWANBase)| Projeto base para uma aplicação que utilizará LoRAWAN|
+|[PushButtonLoRaWAN](/examples/PushButtonLoRaWAN)| Exemplo que utiliza um botão para enviar pacotes LoRaWAN|
+|[PushButtonLoRaWANLowPower](/examples/PushButtonLoRaWANLowPower) |Exemplo anterior mas que entra em Sleep Mode|
+|[LoRaWANADCRTC](/examples/LoRaWAN_ADC_RTC)|Exemplo que mede a tensão ADC na porta PB1 e envia um HelloWorld por LoRaWAN| 
+|[PushButtonLoRaWANBLE](/examples/PushButtonLoRaWANBLE)| Exemplo que utiliza do Bluetooth para escrever e enviar pacotes LoRaWAN| 
+|[LoraP2P](/examples/LoRaP2P) |Exemplo de comunicação peer-to-peer via rádio LoRa|
 <br>
 
 ## Estrutura de Diretórios
@@ -29,15 +29,15 @@ Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
 ├─ Firmware
 │   ├── HTLRBL32L-SDK
 │   ├── applications
-|   |    ├── template_project
-|   |    ├── helloWorld
-|   |    ├── blinking_LED
-|   |    ├── LoRaWAN_Base
-|   |    ├── pushButton_LoRaWAN
-|   |    ├── pushButton_LoRaWAN_LowPower
-|   |    ├── LoRaWAN_ADC_RTC
-|   |    ├── pushButton_LoRaWAN_BLE
-|   |    └── LoRa_P2P
+|   |    ├── TemplateProject
+|   |    ├── HelloWorld
+|   |    ├── BlinkingLED
+|   |    ├── LoRaWANBase
+|   |    ├── PushButtonLoRaWAN
+|   |    ├── PushButtonLoRaWANLowPower
+|   |    ├── LoRaWANADCRTC
+|   |    ├── PushButtonLoRaWANBLE
+|   |    └── LoRaP2P
 |   ├── doc
 |   |    └── lorawan-keys-apps.pdf
 └── README.md
