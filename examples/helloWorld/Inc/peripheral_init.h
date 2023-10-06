@@ -25,7 +25,7 @@
 
 #define RADIO_SWITCH_ENABLE_Port			 GPIOB
 #define RADIO_SWITCH_ENABLE_Pin        GPIO_PIN_0
-	
+
 
 void IRQHandler_Config(void);
 
@@ -34,4 +34,6 @@ void MX_GPIO_Init(void);
 void SystemClock_Config(void);
 
 void MX_RNG_Init(RNG_HandleTypeDef *hrng);
+void HT_GPIO_UserButtonHandler(uint32_t Line);
+void HT_GPIO_EnableButtonIRQN(void);
 #endif

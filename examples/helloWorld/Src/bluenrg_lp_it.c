@@ -30,8 +30,13 @@
 #include "timeServer.h"
 #include "sx126x.h"
 #include "radio.h"
+#include "HT_push_button.h"
 
 extern EXTI_HandleTypeDef HEXTI_InitStructure;
+extern EXTI_HandleTypeDef Button_EXTI_InitStructure;
+
+volatile uint32_t debounce_count = 0;
+volatile uint32_t debounce_last = 0;
 
 /* Private includes ----------------------------------------------------------*/
 
@@ -83,6 +88,7 @@ void SysTick_IRQHandler(void)
 {
   HAL_IncTick();
   HAL_SYSTICK_IRQHandler();
+  debounce_count++;
 }
 
 void SPI1_IRQHandler(void)
@@ -91,6 +97,19 @@ void SPI1_IRQHandler(void)
 
 }
 	
+void GPIOA_IRQHandler(void){ 
+  static uint32_t debounce_last = 0;
+   
+  if(HAL_EXTI_GetPending(&Button_EXTI_InitStructure)){
+    if((debounce_count - debounce_last) >= 35) { 
+      /* Add the SW no bounce */
+      debounce_last = debounce_count;
+      
+      /* Handle user button press in dedicated function */
+      HAL_EXTI_IRQHandler(&Button_EXTI_InitStructure);
+    }
+  }
+}
 void GPIOB_IRQHandler(void){  
   if(HAL_EXTI_GetPending( &HEXTI_InitStructure )){
     HAL_EXTI_IRQHandler( &HEXTI_InitStructure );
@@ -112,6 +131,14 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
  // TimerIrqHandler( );
 }
 
+void HAL_PWR_MNGR_WakeupIOCallback(uint32_t source) {
+
+#if DEEP_SLEEP_MODE == 1
+  printf("Waking up..\n");
+  HT_PB_SetState(SM_PUSH_BUTTON_HANDLER);
+#endif
+
+}
 void RTC_IRQHandler(void)
 {
 	TimerIrqHandler( );

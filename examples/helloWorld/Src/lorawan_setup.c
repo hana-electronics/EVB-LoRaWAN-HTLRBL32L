@@ -37,6 +37,14 @@ static void LoraStartTx(TxEventType_t EventType);
 /* tx timer callback function*/
 static void OnTxTimerEvent( void* context );
 
+#if( OVER_THE_AIR_ACTIVATION != 0 )
+/* start the join process*/
+static void LoraStartJoin(TxEventType_t EventType);
+
+/* join timer callback function*/
+static void OnJoinEvent( void* context );
+#endif
+
 //static void OnTxTesteTimer( void* context );
 /* tx timer callback function*/
 static void LoraMacProcessNotify( void );
@@ -57,6 +65,8 @@ LoraFlagStatus AppProcessRequest=LORA_RESET;
 
 
 static TimerEvent_t TxTimer;
+
+static TimerEvent_t JoinTimer;
 																																												
 
 static  LoRaParam_t LoRaParamInit= {LORAWAN_ADR_STATE,
@@ -78,10 +88,14 @@ void LORAWAN_init(uint8_t region){
 	LORA_Init( &LoRaMainCallbacks, &LoRaParamInit);
 	//Initializes LoRaWAN join procedure(OTAA/ABP) related code
 	LORA_Join();
+#if( OVER_THE_AIR_ACTIVATION != 0 )
+	//Starts LoRaWAN periodic join timer
+	LoraStartJoin(TX_ON_TIMER);
+#endif
 	//clears LoRa Radio Interruptions
 	SX126xClearIrqStatus( IRQ_RADIO_ALL );
 	//Starts LoRaWAN periodic TX timer
-	LoraStartTx(TX_ON_TIMER);
+	//LoraStartTx( TX_ON_TIMER);
 	//clear pending IRQs
 	HAL_NVIC_ClearPendingIRQ(GPIOB_IRQn);
 	//re-enable IRQs
@@ -220,7 +234,7 @@ static void OnTxTimerEvent( void* context ){
 	//Sets send flag = true
 	lora_AppData_t appData;
 
-	appData.Buff = (uint8_t*)"HelloWorld";
+	appData.Buff = (uint8_t*)"test78645";
 	appData.BuffSize = strlen((const char*)appData.Buff);
 	appData.Port = LORAWAN_APP_PORT;
 	
@@ -228,6 +242,37 @@ static void OnTxTimerEvent( void* context ){
 	lorawan_send(&appData);
 
   }
+
+#if( OVER_THE_AIR_ACTIVATION != 0 )
+static void LoraStartJoin(TxEventType_t EventType){
+	if (EventType == TX_ON_TIMER)
+	{
+	/* send everytime timer elapses */
+		//Sets callback function
+		TimerInit( &JoinTimer, OnJoinEvent );
+		//Sets alarm total time
+	    TimerSetValue( &JoinTimer,  APP_TX_DUTYCYCLE);
+		//Callback call
+	    TimerStart(&JoinTimer);
+	}
+}
+
+static void OnJoinEvent( void* context ){
+
+	if ( LORA_JoinStatus () != LORA_SET)
+	{
+		TimerStop(&JoinTimer);
+	    /*Not joined, try again later*/
+	    LORA_Join();
+	    TimerStart(&JoinTimer);
+	    return;
+	}
+	else
+	{
+		TimerStop(&JoinTimer);
+	}
+}
+#endif
 
 static void LORA_ConfirmClass ( DeviceClass_t Class ){
 
@@ -243,7 +288,7 @@ static void LORA_ConfirmClass ( DeviceClass_t Class ){
 
 static void LORA_TxNeeded ( void )
 {
-	AppData.BuffSize = 0;
+		AppData.BuffSize = 0;
     AppData.Port = LORAWAN_APP_PORT;
 
     LORA_send( &AppData, LORAWAN_UNCONFIRMED_MSG);

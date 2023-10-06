@@ -55,7 +55,9 @@ void MX_GPIO_LP_Init(void) {
 	LL_PWR_EnablePDA(LL_PWR_PUPD_IO14);
 	LL_PWR_EnablePDA(LL_PWR_PUPD_IO15);
 
-	LL_PWR_EnablePUB(LL_PWR_PUPD_IO0);
+
+
+	LL_PWR_EnablePDB(LL_PWR_PUPD_IO0);
 	LL_PWR_EnablePDB(LL_PWR_PUPD_IO1);
 	LL_PWR_EnablePDB(LL_PWR_PUPD_IO2);
 	LL_PWR_EnablePDB(LL_PWR_PUPD_IO3);
@@ -206,6 +208,7 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
 }
 
 EXTI_HandleTypeDef HEXTI_InitStructure;
+EXTI_HandleTypeDef Button_EXTI_InitStructure;
 
 /**
   * @brief IRQ Handler Configuration Function
@@ -240,8 +243,47 @@ void IRQHandler_Config(void)
   /* Enable and set line 10 Interrupt to the lowest priority */
   HAL_NVIC_SetPriority(GPIOB_IRQn,2);
   HAL_NVIC_EnableIRQ(GPIOB_IRQn);
+
+  /* Configure PA4 pin as input floating */
+      GPIO_InitStructure.Mode = GPIO_MODE_INPUT;
+      GPIO_InitStructure.Pull = GPIO_PULLDOWN;
+      GPIO_InitStructure.Pin = GPIO_PIN_4;
+      HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+      EXTI_Config_InitStructure.Line = EXTI_LINE_PA4;
+      EXTI_Config_InitStructure.Trigger = EXTI_TRIGGER_RISING_EDGE;
+      EXTI_Config_InitStructure.Type = EXTI_TYPE_EDGE;
+
+      HAL_EXTI_SetConfigLine(&Button_EXTI_InitStructure, &EXTI_Config_InitStructure);
+  #if DEEP_SLEEP_MODE == 0
+      HAL_EXTI_RegisterCallback(&Button_EXTI_InitStructure, HAL_EXTI_COMMON_CB_ID, HT_GPIO_UserButtonHandler);
+  #endif
+      HAL_EXTI_Cmd(&Button_EXTI_InitStructure, ENABLE);
+
+      HAL_EXTI_ClearPending(&Button_EXTI_InitStructure);
+
+      /* Enable and set line 10 Interrupt to the lowest priority */
+      HAL_NVIC_SetPriority(GPIOA_IRQn, 3);
+      HAL_NVIC_EnableIRQ(GPIOA_IRQn);
 }
 
+
+#if DEEP_SLEEP_MODE == 0
+
+void HT_GPIO_EnableButtonIRQN(void) {
+    HAL_EXTI_ClearPending(&Button_EXTI_InitStructure);
+
+    /* Enable and set line 10 Interrupt to the lowest priority */
+    HAL_NVIC_SetPriority(GPIOA_IRQn, 3);
+    HAL_NVIC_EnableIRQ(GPIOA_IRQn);
+}
+
+void HT_GPIO_UserButtonHandler(uint32_t Line) {
+    HAL_NVIC_DisableIRQ(GPIOA_IRQn);
+    HT_PB_SetState(SM_PUSH_BUTTON_HANDLER);
+}
+
+#endif
 /**
   * @brief GPIO Initialization Function
   * @param None
@@ -324,6 +366,43 @@ void HAL_RNG_MspInit(RNG_HandleTypeDef* hrng)
   }
 }
 
+void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c) {
+	GPIO_InitTypeDef GPIO_InitStruct;
+
+	if(hi2c->Instance == I2C1) {
+		/* Peripheral clock enable */
+		__HAL_RCC_GPIOA_CLK_ENABLE();
+
+		/* SCL GPIO config */
+		GPIO_InitStruct.Pin = GPIO_PIN_0;
+		GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+		GPIO_InitStruct.Pull = GPIO_PULLUP;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		GPIO_InitStruct.Alternate = GPIO_AF0_I2C1;
+		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+		GPIO_InitStruct.Pin = GPIO_PIN_1;
+		GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+		GPIO_InitStruct.Pull = GPIO_PULLUP;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		GPIO_InitStruct.Alternate = GPIO_AF0_I2C1;
+		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+		/* Peripheral clock enable */
+		__HAL_RCC_I2C1_CLK_ENABLE();
+	}
+}
+
+void HAL_I2C_MspDeInit(I2C_HandleTypeDef *hi2c) {
+	if(hi2c->Instance == I2C1) {
+		/* Peripheral clock disable */
+		__HAL_RCC_I2C1_CLK_DISABLE();
+
+		/**I2Cx GPIO Configuration*/
+		HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0);
+		HAL_GPIO_DeInit(GPIOA, GPIO_PIN_1);
+	}
+}
 
 
 

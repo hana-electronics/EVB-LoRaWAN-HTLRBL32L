@@ -29,7 +29,18 @@ extern "C" {
 #include "rf_driver_hal.h"
 #include "rf_driver_ll_rtc.h"
 #include "utils.h"
-
+#include "uart.h"
+#include "spi.h"
+#include "rtc.h"
+#include "sx126x.h"
+#include "sx126x_board.h"
+#include "radio.h"
+#include "lorawan_setup.h"
+#include "lora-test.h"
+#include "LoRaMac.h"
+#include "hal_wrappers.h"
+#include "HT_push_button.h"
+#include "rf_driver_hal_power_manager.h"
 
 /* Private includes ----------------------------------------------------------*/
 #include <stdio.h>
