@@ -22,6 +22,9 @@
 ## Having difficults?   
 * [Training Course](https://hanaelectronics.com.br/capacitacao/)
 
+## SDK
+The SDK is available in its own [repository](https://github.com/Hana-Electronics/HE-HTLRBL32L-SDK). Please check it for updated versions, changelogs, and release notes.
+
 ## Contact
 
 Register your interest in iMCP - HTLRBL32L in the form: https://forms.office.com/r/nvTXCTS5je
