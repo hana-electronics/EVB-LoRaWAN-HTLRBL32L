@@ -1,30 +1,32 @@
-# Firmware
-Esta área contém arquivos referentes ao firmware do projeto, assim como o [SDK](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/HTLRBL32L-SDK) do SIP.
-<br>
+# Important info
+Check the README of each example to verify which SDK version is compatible with it.
 <br>
 
-## Como clonar este branch
+# SDK
+The SDK is available in its own [repository](https://github.com/Hana-Electronics/HE-HTLRBL32L-SDK). Please check it for updated versions, changelogs, and release notes.
+
+## Clone this branch
 ```
 git clone --single-branch --branch main https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
 ```
 
-## Exemplos
-Abaixo encontra-se alguns exemplos para iniciar o uso da EVB LoRa.
+## Exemplas
+Below are some examples to get started with using the EVB LoRa.
 
-| Aplicação  |      Descrição                      | 
+| Example  |      Description                  | 
 | :---------- | :---------------------------------- | 
-|[TemplateProject](/examples/TemplateProject)| Template para começar um projeto do zero |
-|[HelloWorld](/examples/helloWorld)|Exemplo que escreve HelloWorld via UART|
-|[BlinkingLED](/examples/BlinkingLED)| Exemplo de pisca LED |
-|[LoRaWANBase](/examples/LoRaWANBase)| Projeto base para uma aplicação que utilizará LoRAWAN|
-|[PushButtonLoRaWAN](/examples/PushButtonLoRaWAN)| Exemplo que utiliza um botão para enviar pacotes LoRaWAN|
-|[PushButtonLoRaWANLowPower](/examples/PushButtonLoRaWANLowPower) |Exemplo anterior mas que entra em Sleep Mode|
-|[LoRaWANADCRTC](/examples/LoRaWAN_ADC_RTC)|Exemplo que mede a tensão ADC na porta PB1 e envia um HelloWorld por LoRaWAN| 
-|[PushButtonLoRaWANBLE](/examples/PushButtonLoRaWANBLE)| Exemplo que utiliza do Bluetooth para escrever e enviar pacotes LoRaWAN| 
-|[LoraP2P](/examples/LoRaP2P) |Exemplo de comunicação peer-to-peer via rádio LoRa|
+|[TemplateProject](/examples/TemplateProject)| Template to start a project from scratch. |
+|[HelloWorld](/examples/helloWorld)| Example that writes HelloWorld via UART. |
+|[BlinkingLED](/examples/BlinkingLED)| Example of blinking LED. |
+|[LoRaWANBase](/examples/LoRaWANBase)| Base project for an application that will use LoRaWAN. |
+|[PushButtonLoRaWAN](/examples/PushButtonLoRaWAN)| Example that uses a button to send LoRaWAN packets. |
+|[PushButtonLoRaWANLowPower](/examples/PushButtonLoRaWANLowPower) |Previous example but goes into Sleep Mode. |
+|[LoRaWANADCRTC](/examples/LoRaWAN_ADC_RTC)| Example that measures ADC voltage on port PB1 and sends HelloWorld via LoRaWAN. |
+|[PushButtonLoRaWANBLE](/examples/PushButtonLoRaWANBLE)| Example that uses Bluetooth to write and send LoRaWAN packets. |
+|[LoraP2P](/examples/LoRaP2P) |Example of peer-to-peer communication via LoRa radio. |
 <br>
 
-## Estrutura de Diretórios
+## Directory structure
 ```
 ├─ Firmware
 │   ├── HTLRBL32L-SDK
