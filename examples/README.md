@@ -8,7 +8,7 @@ The SDK is available in its own [repository](https://github.com/Hana-Electronics
 git clone --single-branch --branch main https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
 ```
 
-## Exemplas
+## Examples
 Below are some examples to get started with using the EVB LoRa.
 
 | Example  |      Description                  | 
