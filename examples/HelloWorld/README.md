@@ -4,6 +4,9 @@ This project writes the phrase 'Hello World' via UART with a small delay between
 
 The firmware configures some necessary peripherals, like USART1.
 
+## SDK Version
+This example is compatible with version 1.x.x.  
+
 ## Test Setup
 
 This section describes the basic test setup to running this application.
