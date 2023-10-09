@@ -1,8 +1,6 @@
 # Important info
 Check the README of each example to verify which SDK version is compatible with it.
-<br>
 
-# SDK
 The SDK is available in its own [repository](https://github.com/Hana-Electronics/HE-HTLRBL32L-SDK). Please check it for updated versions, changelogs, and release notes.
 
 ## Clone this branch
