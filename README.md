@@ -24,6 +24,6 @@
 
 ## Contact
 
-🚩 Register your interest in iMCP - HTLRBL32L in the form: https://forms.office.com/r/nvTXCTS5je
+Register your interest in iMCP - HTLRBL32L in the form: https://forms.office.com/r/nvTXCTS5je
 
 
