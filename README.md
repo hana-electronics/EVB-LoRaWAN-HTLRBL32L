@@ -4,28 +4,26 @@
 </div
 <br>
 <div align="justify">
-  A placa EvB LoRa foi desenvolvida com a finalidade de permitir um fácil acesso aos pinos de entrada e saída do componente iMCP-HTLRBL32L-10 da HT Micron. O componente é um System-in-Package (SiP) que possui capacidade de comunicação utilizando os protocolos LoRa e BLE. O componente integra um microprocessador BlueNRG SoC da ST Microelectronics com interface Bluetooth LE e um transciver de RF da Semtec com interface LoRaWAN multi-região.
+  The EvB LoRa board was developed with the purpose of enabling easy access to the input and output pins of the iMCP-HTLRBL32L-10 component from HT Micron. This component is a System-in-Package (SiP) that has communication capabilities using the LoRa and BLE protocols. The component integrates a BlueNRG SoC microprocessor from ST Microelectronics with Bluetooth LE interface and an RF transceiver from Semtec with a multi-region LoRaWAN interface.o.
 </div>
 
-## Links importantes
+## Important links
 
-* [Ficha técnica](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/docs/datacheets/EvB%20LoRa.pdf)
-* [Documentação](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/docs)
-* [Exemplos de aplicações](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/examples)
+* [Data Brief](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/docs/datacheets/EvB%20LoRa.pdf)
+* [Documentation](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/docs)
+* [Examples](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/examples)
 
+## Having difficults?   
+* [Training Course](https://hanaelectronics.com.br/capacitacao/)
 
-*****
+## For more informations about iMCP HTLRBL32L-SDK 
 
-## Mais Informações sobre o iMCP HTLRBL32L-SDK 
+* [iMCP HTLRBL32L - Data Sheet](https://github.com/htmicron/htlrbl32l/blob/documents/HTLRBL32L-Datasheet/DS002%20Rev.00%20-%20Datasheet%20HTLRBL32L-xx.pdf)
+* [iMCP HTLRBL32L - Examples and Docs](https://github.com/htmicron/htlrbl32l/tree/SDK)
+* [iMCP HTLRBL32L - GitHub](https://github.com/htmicron/htlrbl32l)
 
-* [Ficha técnica do iMCP HTLRBL32L](https://github.com/htmicron/htlrbl32l/blob/documents/HTLRBL32L-Datasheet/DS002%20Rev.00%20-%20Datasheet%20HTLRBL32L-xx.pdf)
-* [Exemplos e documentação de firmware iMCP HTLRBL32L](https://github.com/htmicron/htlrbl32l/tree/SDK)
-* [Link GitHub com mais informações](https://github.com/htmicron/htlrbl32l)
+## Contact
 
-*****
-
-## Interessado em nosso dispositivo?
-
-Para assuntos comerciais, entre em contato com imcp@htmicron.com.br.
+🚩 Register your interest in iMCP - HTLRBL32L in the form: https://forms.office.com/r/nvTXCTS5je
 
 
