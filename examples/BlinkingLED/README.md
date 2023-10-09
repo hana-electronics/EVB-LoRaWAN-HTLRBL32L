@@ -4,6 +4,9 @@ This project blinks the in-board LED with a small delay.
 
 The firmware configures some necessary peripherals, like USART1 (log purposes) and GPIOs (radio interruption, etc.).
 
+## SDK Version
+This example is compatible with v1.X.X 
+
 ## Test Setup
 
 This section describes the basic test setup to running this application.
