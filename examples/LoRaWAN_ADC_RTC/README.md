@@ -4,6 +4,9 @@ This application reads from port PB1, displays this value via UART, and after th
 
 The firmware configures some necessary peripherals, like USART1 (log purposes), GPIOs (radio interruption, etc.) and I2C (STsafe).
 
+## SDK Version
+This example is compatible with version 1.x.x.  
+
 ## Test Setup
 
 This section describes the basic test setup to running this application.
