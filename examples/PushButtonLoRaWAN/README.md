@@ -6,6 +6,9 @@ The firmware configures some necessary peripherals, like USART1 (log purposes), 
 
 More code details can be found reading the 'Code Notes' section further below and the comments written in all header files available in this application.
 
+## SDK Version
+This example is compatible with version 1.x.x.  
+
 ## Test Setup
 
 This section describes the basic test setup to running this application.
