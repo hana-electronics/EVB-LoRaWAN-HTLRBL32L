@@ -29,4 +29,6 @@ The SDK is available in its own [repository](https://github.com/Hana-Electronics
 
 Register your interest in iMCP - HTLRBL32L in the form: https://forms.office.com/r/nvTXCTS5je
 
+If you have any questions, please submit a ticket on the [support page](https://htmicron.com.br/contato/).
+
 
