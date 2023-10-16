@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>LoRaWANBase</name>
+	<name>LoraWANBase</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -24,4 +24,22 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 		<nature>fr.ac6.ide.wise.core.wiseNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>SDK_EVB</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>SDK_EVB/HE_HTLRBL32L_SDK</name>
+			<type>2</type>
+			<locationURI>HE_HTLRBL32L_SDK</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>HE_HTLRBL32L_SDK</name>
+			<value>CHANGE%20ME</value>
+		</variable>
+	</variableList>
 </projectDescription>
