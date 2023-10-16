@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [1.1.0] - 2023-16-10
+
+### Fixed
+
+- [Release Notes](/docs/release-notes.md) - Fix template project to include SDK in the build process.
+
 ## [1.0.0] - 2023-10-09
 
 ### Added
