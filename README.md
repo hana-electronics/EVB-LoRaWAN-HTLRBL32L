@@ -1,6 +1,7 @@
 # Evaluation Board - LoRa® e Bluetooth Low Energy®
+
 <div align="center">
-  <img src='/docs/images/evb-lora.png' id="topology" height="35%" width="35%"/>
+  <img src='./docs/images/evb-lora.png' id="topology" height="35%" width="35%"/>
 </div
 <br>
 <div align="justify">
@@ -9,20 +10,22 @@
 
 ## Important links
 
-* [Data Brief](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/docs/datacheets/EvB%20LoRa.pdf)
-* [Documentation](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/docs)
-* [Examples](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/examples)
+- [Data Brief](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/docs/datacheets/EvB%20LoRa.pdf)
+- [Documentation](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/docs)
+- [Examples](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/examples)
 
-## For more informations about iMCP HTLRBL32L-SDK 
+## For more informations about iMCP HTLRBL32L-SDK
 
-* [iMCP HTLRBL32L - Data Sheet](https://github.com/htmicron/htlrbl32l/blob/documents/HTLRBL32L-Datasheet/DS002%20Rev.00%20-%20Datasheet%20HTLRBL32L-xx.pdf)
-* [iMCP HTLRBL32L - Examples and Docs](https://github.com/htmicron/htlrbl32l/tree/SDK)
-* [iMCP HTLRBL32L - GitHub](https://github.com/htmicron/htlrbl32l)
+- [iMCP HTLRBL32L - Data Sheet](https://github.com/htmicron/htlrbl32l/blob/documents/HTLRBL32L-Datasheet/DS002%20Rev.00%20-%20Datasheet%20HTLRBL32L-xx.pdf)
+- [iMCP HTLRBL32L - Examples and Docs](https://github.com/htmicron/htlrbl32l/tree/SDK)
+- [iMCP HTLRBL32L - GitHub](https://github.com/htmicron/htlrbl32l)
 
-## Having difficults?   
-* [Training Course](https://hanaelectronics.com.br/capacitacao/)
+## Having difficults?
+
+- [Training Course](https://hanaelectronics.com.br/capacitacao/)
 
 ## SDK
+
 The SDK is available in its own [repository](https://github.com/Hana-Electronics/HE-HTLRBL32L-SDK). Please check it for updated versions, changelogs, and release notes.
 
 ## Contact

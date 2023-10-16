@@ -57,8 +57,6 @@ _MEMORY_ROM_SIZE_    = 0x01800;          /* 6KB */
 _MEMORY_ROM_END_     = 0x10001FFF;  
 
 
-RESET_HANDLER = 10040000;
-
 /* Reserved for BTLE stack non volatile memory */
 FLASH_NVM_DATASIZE   = (4*1024);
 
@@ -198,8 +196,8 @@ ENTRY(RESET_HANDLER)
 
 
 /* Generate a link error if heap and stack don't fit into RAM */
-_Min_Heap_Size  = 0x2000; /* required amount of heap  */
-_Min_Stack_Size = 0x1200; /* required amount of stack */
+_Min_Heap_Size  = 0x200; /* required amount of heap  */
+_Min_Stack_Size = 0xC00; /* required amount of stack */
 
 /* Specify the memory areas */
 MEMORY
