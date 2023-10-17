@@ -31,34 +31,25 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 2. Open WiSE-Studio IDE. 
 3. Click in "File->Open Projects from File System...": <br/>
 
-<div align="center">
-  <img src="/docs/images/wiseopenproj1.jpg">
-</div>
+ ![Alt text](../../docs/images/wiseopenproj1.jpg)
 
-<br/>
+
 
 4. Click in "Directory...", find and select your cloned folder "LoRaWAN Base" then click "Finish" to open project. <br/>
 
-<div align="center">
-  <img src="/docs/images/wiseopenproj2.jpg">
-</div>
+![Alt text](../../docs/images/wiseopenproj2.jpg)
 
-<br/>
 
-5. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
+5. Right click the project in the project explorer, click on 'Properties', go to 'C/C++ General', then 'Paths and Symbols', add a symbol called 'IRQ_RadioRX'. Apply and Close. 
+![Alt text](../../docs/images/create_symbol.png)
 
-<div align="center">
-  <img src="/docs/images/run.jpg">
-</div>
+6. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
 
-<br/>
+![Alt text](../../docs/images/run.jpg)
 
-6. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
+7. Open Termite and reset your device to check if the initial string was printed on serial. <br/>
 
-<div align="center">
-   <img src='/docs/images/LoRa%20P2P.png' id="topology" height="65%" width="65%"/>
-</div>
-<br/>
+![Alt text](<../../docs/images/LoRa P2P.png>)
 
 ## Extra Documentation
 

@@ -14,7 +14,7 @@ Below are some examples to get started with using the EVB LoRa.
 | Example  |      Description                  | 
 | :---------- | :---------------------------------- | 
 |[TemplateProject](/examples/TemplateProject)| Template to start a project from scratch. |
-|[HelloWorld](/examples/helloWorld)| Example that writes HelloWorld via UART. |
+|[HelloWorld](/examples/HelloWorld)| Example that writes HelloWorld via UART. |
 |[BlinkingLED](/examples/BlinkingLED)| Example of blinking LED. |
 |[LoRaWANBase](/examples/LoRaWANBase)| Base project for an application that will use LoRaWAN. |
 |[PushButtonLoRaWAN](/examples/PushButtonLoRaWAN)| Example that uses a button to send LoRaWAN packets. |
@@ -42,7 +42,3 @@ Below are some examples to get started with using the EVB LoRa.
 |   |    └── lorawan-keys-apps.pdf
 └── README.md
 ```
-## Docs
-
-[For more information](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/master/Firmware/doc)
-
