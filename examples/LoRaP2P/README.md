@@ -40,7 +40,7 @@ git clone --single-branch --branch master https://github.com/Hana-Electronics/EV
 ![Alt text](../../docs/images/wiseopenproj2.jpg)
 
 
-5. Right click the project in the project explorer, click on 'Properties', go to 'C/C++ General', then 'Paths and Symbols', add a symbol called 'IRQ_RadioRX'. Apply and Close. 
+5. Right click the project in the project explorer, click on 'Properties', go to 'C/C++ General', then 'Paths and Symbols', add a symbol called 'USE_LORA'. Apply and Close. 
 ![Alt text](../../docs/images/create_symbol.png)
 
 6. Right click the project in the project explorer, then click "Run As...-> Wise C/C++ Application" to build and flash the new firmware into your device: <br/>
