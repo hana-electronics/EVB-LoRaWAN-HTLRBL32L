@@ -1,3 +1,7 @@
+## [1.1.1] - 2023-19-10
+
+- Updating README to match new flag for the SDK. 
+
 ## [1.1.0] - 2023-16-10
 
 - The template project was modified to include the SDK in the binary construction process.
