@@ -21,7 +21,7 @@ Below are some examples to get started with using the EVB LoRa.
 |[PushButtonLoRaWANLowPower](/examples/PushButtonLoRaWANLowPower) |Previous example but goes into Sleep Mode. | 1.x.x |
 |[LoRaWANADCRTC](/examples/LoRaWAN_ADC_RTC)| Example that measures ADC voltage on port PB1 and sends HelloWorld via LoRaWAN. | 1.x.x |
 |[PushButtonLoRaWANBLE](/examples/PushButtonLoRaWANBLE)| Example that uses Bluetooth to write and send LoRaWAN packets. | 1.x.x |
-|[LoraP2P](/examples/LoRaP2P) |Example of peer-to-peer communication via LoRa radio. |1.1.0|
+|[LoraP2P](/examples/LoRaP2P) |Example of peer-to-peer communication via LoRa radio. |1.1.x|
 
 ## Directory structure
 ```
