@@ -25,9 +25,8 @@
 #include "ht_crypto.h"
 #include "stsafea_core.h"
 
-
-#define LED_Port                      GPIOA
-#define LED_PIN                      GPIO_PIN_5
+#define LED_PIN                       GPIO_PIN_5
+#define LED_Port                     GPIOA
 
 RNG_HandleTypeDef hrng;
 

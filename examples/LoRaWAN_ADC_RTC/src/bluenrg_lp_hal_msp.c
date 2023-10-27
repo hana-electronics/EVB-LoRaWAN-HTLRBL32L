@@ -23,6 +23,7 @@
 #include "radio.h"
 #include "rf_driver_ll_pwr.h"
 #include "rf_driver_hal_rng.h"
+#include "HT_push_button.h"
 
 /* Private typedef -----------------------------------------------------------*/
 

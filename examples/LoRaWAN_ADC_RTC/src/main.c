@@ -22,12 +22,12 @@
 #include "sx126x_board.h"
 #include "radio.h"
 #include "peripheral_init.h"
-#include "lorawan_setup.h"
 #include "lora-test.h"
 #include "LoRaMac.h"
 #include "hal_wrappers.h"
 #include "ht_crypto.h"
 #include "stsafea_core.h"
+#include "rf_driver_hal_gpio.h"
 #include "adcSetup.h"
 
 RNG_HandleTypeDef hrng;
@@ -136,7 +136,7 @@ void Error_Handler(void)
  * @retval None
  */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
+{
 	/* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 	F

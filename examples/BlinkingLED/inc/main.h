@@ -69,6 +69,7 @@ extern "C" {
 /* Exported functions prototypes ---------------------------------------------*/
 
 void MX_GPIO_LP_Init(void);
+void Error_Handler(void);
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
