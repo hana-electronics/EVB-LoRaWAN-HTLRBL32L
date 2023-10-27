@@ -32,6 +32,8 @@ extern "C" {
 #include "uart.h"
 #include "spi.h"
 #include "rtc.h"
+#include "i2c.h"
+#include "crc.h"
 #include "sx126x.h"
 #include "sx126x_board.h"
 #include "radio.h"
@@ -44,6 +46,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 #include <stdio.h>
+#include <stdint.h>
 
 #include "rf_driver_hal_dma.h"
 #include "rf_driver_hal_i2c.h"
@@ -51,9 +54,6 @@ extern "C" {
 #include "rf_driver_hal_uart.h"
 #include "rf_driver_hal_gpio.h"
 //#include "stsafea_types.h"
-
-#define FLASH_USER_START_ADDR   (FLASH_END_ADDR - FLASH_PAGE_SIZE - 0xF)        /* Start @ of user Flash area */
-#define FLASH_USER_END_ADDR     (FLASH_END_ADDR - 0xF)                          /* End @ of user Flash area */
 
 
 
@@ -67,7 +67,6 @@ extern "C" {
 
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
 
 void MX_GPIO_LP_Init(void);
 /* Private variables ---------------------------------------------------------*/

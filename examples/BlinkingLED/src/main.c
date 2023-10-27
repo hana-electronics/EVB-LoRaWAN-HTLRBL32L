@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2023 Hana Electronics Indústria e Comércio LTDA
+ Copyright (c) 2023 Hana Electronics Indï¿½stria e Comï¿½rcio LTDA
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -21,25 +21,13 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "uart.h"
-#include "spi.h"
-#include "rtc.h"
-#include "crc.h"
-#include "i2c.h"
-#include "sx126x.h"
-#include "sx126x_board.h"
-#include "radio.h"
 #include "peripheral_init.h"
-#include "lorawan_setup.h"
-#include "lora-test.h"
-#include "LoRaMac.h"
-#include "hal_wrappers.h"
 #include "ht_crypto.h"
 #include "stsafea_core.h"
 
 
 #define LED_Port                      GPIOA
-#define LED_Pin                       GPIO_PIN_5
+#define LED_PIN                      GPIO_PIN_5
 
 RNG_HandleTypeDef hrng;
 
@@ -63,7 +51,7 @@ int main(void) {
 
 	while (1){
 
-		HAL_GPIO_TogglePin(LED_Port, LED_Pin); // Function to toggle the LED on and off
+		HAL_GPIO_TogglePin(LED_Port, LED_PIN); // Function to toggle the LED on and off
 		HAL_Delay(200); 					   // Delay before the function toggles again in milliseconds
 	}
 
@@ -80,26 +68,4 @@ void Error_Handler(void)
 	while(1);
 }
 
-
-
-#ifdef  USE_FULL_ASSERT
-/**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
-	/* User can add his own implementation to report the file name and line number,
-    ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-	F
-	/* Infinite loop */
-	while (1)
-	{
-	}
-}
-#endif /* USE_FULL_ASSERT */
-
-/***** Hana Electronics Indústria e Comércio LTDA ****** END OF FILE ****/
+/***** Hana Electronics Indï¿½stria e Comï¿½rcio LTDA ****** END OF FILE ****/
