@@ -13,28 +13,109 @@
  *
  */
 
-/* Includes  ------------------------------------------------------------------*/
-
 #include "HT_push_button.h"
-#include "peripheral_init.h"
 
-/* Defines  -------------------------------------------------------------------*/
-#define CounterMiliSec	10000 // modified
-
-/* Variables  -----------------------------------------------------------------*/
+#define CounterMiliSec	7000 // modified
 
 WakeupSourceConfig_TypeDef wakeupIO; 
 PowerSaveLevels stopLevel;
 
-volatile HT_Fsm state = SM_WAIT_FOR_EVENT;
-volatile HT_LoRa_Process lora_process = PROCESS_LORA_READY;
-static TimerEvent_t PushCounter;
-static int PushCounterFlag = 1;
-extern lora_AppData_t AppData;
+volatile uint8_t set_connectable = 0;
+uint8_t connected = 0;
 
-static uint8_t payload[] = {"HelloWorld"};
+HT_Payload payload = {0};
+HT_Fsm state = SM_WAIT_FOR_EVENT;
+HT_Event event;
 
-/* Functions  ----------------------------------------------------------------*/
+HT_LoRa_Process lora_process = PROCESS_LORA_READY;
+
+static TimerEvent_t PushCounter; // modified
+static int PushCounterFlag = 1; // modified
+
+//extern LoRaMacRadioEvents_t LoRaMacRadioEvents; // modified
+extern lora_AppData_t AppData; // modified
+//extern RxDoneParams RxBuffer;
+
+uint8_t rx_flag = 0;
+
+/*!******************************************************************
+ * \fn static void HT_PB_SendLoraFrame(void);
+ * \brief Sends a LoRaWAN frame containing what was received by bluetooth.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_SendLoraFrame(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_WritePayloadState(void)
+ * \brief Write without response handler state.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_WritePayloadState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_SendFrameState(void)
+ * \brief Send a LoRa frame based on the previous event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_SendFrameState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_PushButtonState(void)
+ * \brief Push button handler state.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_PushButtonState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_WaitForEventState(void)
+ * \brief Keep waiting for an event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_WaitForEventState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_RxLoraState(void)
+ * \brief LoRaWAN RX handler. Saves RX buffer to send it in the next bluetooth read event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_RxLoraState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_Fsm(void)
+ * \brief Finite state machine function.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_Fsm(void);
+
+static void OnPushCounterEvent(void *context);
 
 void HT_PB_SetState(HT_Fsm new_state) {
 	state = new_state;
@@ -65,49 +146,46 @@ static void HT_PB_RadioSleep(void){
 static void HT_PB_SendLoraFrame(void) {
 	lora_AppData_t tx_payload;
 
-	tx_payload.Buff = payload;
-	tx_payload.BuffSize = strlen((char *)payload);
+	if(strlen((char *)payload.data) == 0)
+		sprintf((char *)payload.data, "Hello, World!");
+
+	tx_payload.Buff = (uint8_t *)&payload;
+	tx_payload.BuffSize = strlen((char *)payload.data) == 0 ? PAYLOAD_SIZE + 1 : strlen((char *)payload.data) + 1;
 	tx_payload.Port = LORAWAN_APP_PORT;
 
-	lora_process = PROCESS_LORA_TX;
+  	lora_process = PROCESS_LORA_TX;
 	lorawan_send(&tx_payload);
+	
+	HT_GPIO_EnableButtonIRQN();
 }
 
 static void HT_PB_WaitForEventState(void) {
+	
 	state = SM_WAIT_FOR_EVENT;
-
+                    
 	/* Power Save Request */
-	if(lora_process == PROCESS_LORA_READY && LORA_JoinStatus () == LORA_SET) {
-#if DEEP_SLEEP_MODE == 1
-		printf("\r\nSleeping....\n");
+	if(lora_process == PROCESS_LORA_READY) {
 		HT_PB_RadioSleep();
-		HAL_PWR_MNGR_Request(POWER_SAVE_LEVEL_STOP_NOTIMER, wakeupIO, &stopLevel);		
-#else
-		HT_GPIO_EnableButtonIRQN();
-#endif
-
-	}
-	else if(PushCounterFlag == 1){ // X milisec
-		TimerStop(&PushCounter); // stop counter
-		//PushCounterFlag = 0; // reset flag
-		HT_PB_SetLoraProcess(PROCESS_LORA_READY);
+		HAL_PWR_MNGR_Request(POWER_SAVE_LEVEL_STOP_NOTIMER, wakeupIO, &stopLevel);
 	}
 }
 
 static void HT_PB_PushButtonState(void) {
 	if(PushCounterFlag){
-			TimerStop(&PushCounter); // stop counter
-			PushCounterFlag = 0;
-			state = SM_SEND_FRAME;
-			TimerStart(&PushCounter); // start counter
+		TimerStop(&PushCounter); // stop counter
+		PushCounterFlag = 0;
+		event = PUSH_BUTTON;
+		state = SM_SEND_FRAME;
+		TimerStart(&PushCounter); // start counter
 	}
 }
 
 static void HT_PB_SendFrameState(void) {
-
-	printf("Send frame state...\n");
+	uint8_t size = strlen((char *)payload.data);
+	
 	HT_PB_SendLoraFrame();
 
+	memset(payload.data, 0, sizeof(payload.data));
 	state = SM_WAIT_FOR_EVENT;
 }
 
@@ -117,10 +195,22 @@ static void HT_PB_RxLoraState(void) {
 		printf(" %02X ", AppData.Buff[i]);
 	printf("}\n");
 
+	rx_flag = 1;
 	state = SM_WAIT_FOR_EVENT;
+	lora_process = PROCESS_LORA_READY;
 }
 
-void HT_PB_Fsm(void) {
+static void HT_PB_WritePayloadState(void) {
+	if(PushCounterFlag){
+		TimerStop(&PushCounter); // stop counter
+		PushCounterFlag = 0;
+		event = WRITE_PAYLOAD;
+		state = SM_SEND_FRAME;
+		TimerStart(&PushCounter); // start counter
+	}
+}
+
+static void HT_PB_Fsm(void) {
 
 	switch (state) {
 	case SM_WAIT_FOR_EVENT:
@@ -128,6 +218,9 @@ void HT_PB_Fsm(void) {
 		break;
 	case SM_PUSH_BUTTON_HANDLER:
 		HT_PB_PushButtonState();
+		break;
+	case SM_WRITE_PAYLOAD_HANDLER:
+		HT_PB_WritePayloadState();
 		break;
 	case SM_SEND_FRAME:
 		HT_PB_SendFrameState();
@@ -141,16 +234,27 @@ void HT_PB_Fsm(void) {
 	}
 }
 
-void HT_PB_Counter_init(void){
-		//Sets callback function
-		TimerInit(&PushCounter, OnPushCounterEvent);
-		//Sets alarm total time
-	    TimerSetValue(&PushCounter, CounterMiliSec);
-	    //TimerStart(&PushCounter);
+void HT_PB_app(void) {
+    
+	if(LORA_JoinStatus()){
+	if (set_connectable) {
+        HT_BLE_SetDeviceConnectable();
+        set_connectable = 0;
+   }
+	HT_PB_Fsm();
 	}
+}
+
+void HT_PB_Counter_init(void){
+	//Sets callback function
+	TimerInit(&PushCounter, OnPushCounterEvent);
+	//Sets alarm total time
+    TimerSetValue(&PushCounter, CounterMiliSec);
+    TimerStart(&PushCounter);
+}
 
 static void OnPushCounterEvent(void *context){
 	PushCounterFlag = 1;
+	lora_process = PROCESS_LORA_READY;
 }
-
 /************************ HT MICRON SEMICONDUCTORS S.A - HT_push_button.c *****END OF FILE****/

@@ -15,7 +15,7 @@
  * \author HT Micron Advanced R&D
  * \link support_iot@htmicron.com.br
  * \version 1.0
- * \date January 05, 2022
+ * \date Junuary 17, 2022
  */
 
 #ifndef __HT_API__
@@ -24,18 +24,15 @@
 /* Includes  ------------------------------------------------------------------*/
 #include "main.h"
 #include "LoRaMac.h"
-#include "lora.h"
-#include "lorawan_setup.h"
-#include "sx126x.h"
-#include "rf_driver_hal_power_manager.h"
+#include "lora.h" // modified
+#include "lorawan_setup.h" // modified
 #include "LoraMacTypes.h" // modified
 
-
-
 /* Defines  ------------------------------------------------------------------*/
-#define DEEP_SLEEP_MODE 1										/* </ Enable/disable deep sleep mode. */
 #define PAYLOAD_SIZE 19 										/** </ 19 + event = 20 bytes */
+
 /* Typedef -----------------------------------------------------------*/
+
 /**
  * \enum HT_Event
  * \brief Specifies all events that can gerenate a LoRa transmission.
@@ -79,18 +76,16 @@ typedef struct {
 /* Functions ------------------------------------------------------------------*/
 
 /*!******************************************************************
- * \fn void HT_PB_Fsm(void)
- * \brief Finite state machine function.
+ * \fn void HT_PB_app(void)
+ * \brief Application tick function.
  *
  * \param[in]  none
  * \param[out] none
  *
  * \retval none
  *******************************************************************/
-void HT_PB_Fsm(void);
-static void OnPushCounterEvent(void *context);
+void HT_PB_app(void);
 
-#if DEEP_SLEEP_MODE == 1
 /*!******************************************************************
  * \fn void HT_PB_ConfigWakeupIO(void)
  * \brief Configures all wake up sources.
@@ -101,18 +96,6 @@ static void OnPushCounterEvent(void *context);
  * \retval none
  *******************************************************************/
 void HT_PB_ConfigWakeupIO(void);
-#endif
-
-/*!******************************************************************
- * \fn void HT_PB_SetState(HT_Fsm new_state)
- * \brief Sets a new FSM state.
- *
- * \param[in]  HT_Fsm new_state		New state.
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-void HT_PB_SetState(HT_Fsm new_state);
 
 /*!******************************************************************
  * \fn HT_LoRa_Process HT_PB_GetLoraProcess(void)
@@ -127,6 +110,17 @@ void HT_PB_SetState(HT_Fsm new_state);
 HT_LoRa_Process HT_PB_GetLoraProcess(void);
 
 /*!******************************************************************
+ * \fn static void HT_PB_SetState(HT_Fsm new_state)
+ * \brief Sets a new FSM state.
+ *
+ * \param[in]  HT_Fsm new_state		New state.
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+void HT_PB_SetState(HT_Fsm new_state);
+
+/*!******************************************************************
  * \fn void HT_PB_SetLoraProcess(HT_LoRa_Process process)
  * \brief Sets a new LoRa process. This flag is used to handle the RX windows of the LoRa protocol.
  * 	The user button will be enabled again after both RX windows be closed.
@@ -138,65 +132,7 @@ HT_LoRa_Process HT_PB_GetLoraProcess(void);
  *******************************************************************/
 void HT_PB_SetLoraProcess(HT_LoRa_Process process);
 
-void HT_PB_Counter_init(void);
-
-/* Function Prototypes  -------------------------------------------------------*/
-
-/*!******************************************************************
- * \fn static void HT_PB_SendFrameState(void)
- * \brief Send a LoRa frame based on the previous event.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_SendFrameState(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_PushButtonState(void)
- * \brief Push button handler state.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_PushButtonState(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_WaitForEventState(void)
- * \brief Keep waiting for an event.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_WaitForEventState(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_SendLoraFrame(void)
- * \brief Sends a LoRaWAN frame containing what was received by bluetooth.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_SendLoraFrame(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_RxLoraState(void)
- * \brief LoRaWAN RX handler. Saves RX buffer to send it in the next bluetooth read event.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_RxLoraState(void);
-
+void HT_PB_Counter_init(void); // modified
 
 #endif /* __HT_API__ */
 
