@@ -1,3 +1,8 @@
+## [1.1.2] - 2023-27-10
+
+- Fixed BLE example
+- Fixed some visual bugs on the other examples
+
 ## [1.1.1] - 2023-19-10
 
 - Updating README to match new flag for the SDK. 
