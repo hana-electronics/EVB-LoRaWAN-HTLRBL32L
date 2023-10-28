@@ -21,18 +21,18 @@
 #include "HT_gatt_db.h"
 #include "osal.h"
 #include "HT_ble_api.h"
+#include "HT_push_button.h"
+
 #include "lorawan_setup.h" // modified
 #include "lora.h"
-#include "HT_push_button.h"
 
 uint16_t envSensServHandle, pushButtonCharHandle, writePayloadCharHandle, appCharHandle;
 
-extern uint16_t connection_handle; // @suppress("Unused variable declaration in file scope")
+extern uint16_t connection_handle;
 
 extern HT_Payload payload;
 extern HT_Fsm state;
-extern HT_Event event; // @suppress("Unused variable declaration in file scope")
-
+extern HT_Event event;
 extern lora_AppData_t AppData; // modified
 //extern RxDoneParams RxBuffer;
 extern uint8_t rx_flag;
