@@ -32,6 +32,7 @@ extern "C" {
 #include "uart.h"
 #include "spi.h"
 #include "rtc.h"
+//#include "gpio.h"
 #include "sx126x.h"
 #include "sx126x_board.h"
 #include "radio.h"
@@ -41,6 +42,26 @@ extern "C" {
 #include "hal_wrappers.h"
 #include "HT_push_button.h"
 #include "rf_driver_hal_power_manager.h"
+
+#include "ble_const.h"
+#include "bluenrg_lp_stack.h"
+#include "rf_driver_hal_power_manager.h"
+#include "rf_driver_hal_vtimer.h"
+
+#include "HT_push_button_cfg.h"
+#include "bleplat.h"
+#include "nvm_db.h"
+
+#include "ble_controller.h"
+#include "pka_manager.h"
+#include "rng_manager.h"
+#include "aes_manager.h"
+#include "utils.h"
+
+#include "HT_ble_api.h"
+#include "HT_gatt_db.h"
+#include "HT_push_button.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 #include <stdio.h>
@@ -69,10 +90,17 @@ extern "C" {
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
+void ModulesTick(void);
+void ModulesInit(void);
+
 void MX_GPIO_LP_Init(void);
+
+void HT_GPIO_UserButtonHandler(uint32_t Line);
+void HT_GPIO_EnableButtonIRQN(void);
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
+void HSM_Init(void);
 
 /* Private variables ---------------------------------------------------------*/
 

@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [1.1.2] - 2023-27-10
+
+### Fixed
+
+- - [Release Notes](/docs/release-notes.md) - Fixed BLE example
+
 ## [1.1.1] - 2023-19-10
 
 ### Fixed

@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2023 Hana Electronics Indústria e Comércio LTDA
+ Copyright (c) 2023 Hana Electronics Indï¿½stria e Comï¿½rcio LTDA
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -17,21 +17,39 @@
 //DEBUG CONFIG FILE:
 #ifdef DEBUG
 #include "debug_configs.h"
+
 #endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "uart.h"
+#include "spi.h"
+#include "rtc.h"
+#include "crc.h"
+#include "i2c.h"
+#include "sx126x.h"
+#include "sx126x_board.h"
+#include "radio.h"
+#include "peripheral_init.h"
+#include "lorawan_setup.h"
+#include "lora-test.h"
+#include "LoRaMac.h"
+#include "hal_wrappers.h"
 #include "ht_crypto.h"
 #include "stsafea_core.h"
-#include "i2c.h"
-#include "crc.h"
-#include "peripheral_init.h"
-
-NO_INIT(uint32_t dyn_alloc_a[DYNAMIC_MEMORY_SIZE >> 2]);
-
 
 RNG_HandleTypeDef hrng;
+
+/*LoRaWAN related configs -> lorawandefines.h
+ *
+ * LoRaWAN functions 	  -> loranwan_setup.c
+ *
+ * DON'T FORGET:
+ *
+ * LORAWAN_TICK() on the while(1) loop if you're gonna use LoRa
+ *
+ * If you're gonna use BLE put the function BLE_STACK_Tick() in the loop;
+ */
 
 /**
  * @brief  The application entry point.
@@ -41,24 +59,22 @@ int main(void) {
 	uint8_t status_code = 0;
 
 	/* System initialization function */
-	//if (SystemInit(SYSCLK_64M, BLE_SYSCLK_NONE) != SUCCESS) {
-	if (SystemInit(SYSCLK_DIRECT_HSE, BLE_SYSCLK_32M) != SUCCESS){
+	if (SystemInit(SYSCLK_64M, BLE_SYSCLK_32M) != SUCCESS) {
 		/* Error during system clock configuration take appropriate action */
 		while(1);
 	}
 	HAL_Init();
 	IRQHandler_Config();
+	HAL_NVIC_DisableIRQ(GPIOA_IRQn);
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
-	MX_GPIO_LP_Init();
 	MX_SPI1_Init();
 	MX_I2C2_Init();
 	MX_CRC_Init();
 	MX_RTC_Init();
-	MX_RNG_Init(&hrng);
+
 
 #ifdef HT_CRYPTO
-
 	if(keys_provisioned()){
 		status_code = ht_crypto_init();
 		if(status_code){
@@ -70,86 +86,9 @@ int main(void) {
 		while(1);
 	}
 #endif
-
-	printf("HTLRBL32L - Push Button LoRaWAN + Bluetooth Application\n");
-
-	LORAWAN_init(DEFAULT_REGION);
-	while(!LORA_JoinStatus()){ // wait for join accept
-		LORAWAN_tick();
-	}
-
-	ModulesInit();
-
-	HT_BLE_BleConfig();
-	HT_BLE_SetDeviceConnectable();
-
-	HT_PB_ConfigWakeupIO();
-
-	HT_PB_Counter_init();
-
+	
 	while (1){
-		ModulesTick();
-		LORAWAN_tick();
-		HT_PB_app();
-	}
 
-}
-
-void ModulesInit(void) {
-	uint8_t ret;
-	BLE_STACK_InitTypeDef BLE_STACK_InitParams = BLE_STACK_INIT_PARAMETERS;
-
-	LL_AHB_EnableClock(LL_AHB_PERIPH_PKA|LL_AHB_PERIPH_RNG);
-
-	/* BlueNRG-LP stack init */
-	ret = BLE_STACK_Init(&BLE_STACK_InitParams);
-	if (ret != BLE_STATUS_SUCCESS) {
-		printf("Error in BLE_STACK_Init() 0x%02x\r\n", ret);
-		while(1);
-	}
-
-	BLECNTR_InitGlobal();
-
-	HAL_VTIMER_InitType VTIMER_InitStruct = {HS_STARTUP_TIME, INITIAL_CALIBRATION, CALIBRATION_INTERVAL};
-	HAL_VTIMER_Init(&VTIMER_InitStruct);
-
-	BLEPLAT_Init();
-	if (PKAMGR_Init() == PKAMGR_ERROR)
-		while(1);
-
-	if (RNGMGR_Init() != RNGMGR_SUCCESS)
-		while(1);
-
-	/* Init the AES block */
-	AESMGR_Init();
-}
-
-void ModulesTick(void) {
-	/* Timer tick */
-	HAL_VTIMER_Tick();
-
-	/* Bluetooth stack tick */
-	BLE_STACK_Tick();
-
-	/* NVM manager tick */
-	NVMDB_Tick();
-}
-
-void hci_hardware_error_event(uint8_t Hardware_Code) {
-	if (Hardware_Code <= 0x03) {
-		printf("Error code: 0x%02X\n", Hardware_Code);
-		NVIC_SystemReset();
-	}
-}
-
-void aci_hal_fw_error_event(uint8_t FW_Error_Type, uint8_t Data_Length, uint8_t Data[]) {
-	if (FW_Error_Type <= 0x03) {
-		uint16_t connHandle;
-
-		/* Data field is the connection handle where error has occurred */
-		connHandle = LE_TO_HOST_16(Data);
-
-		aci_gap_terminate(connHandle, BLE_ERROR_TERMINATED_REMOTE_USER);
 	}
 }
 
@@ -168,8 +107,6 @@ void Error_Handler(void)
 	while(1);
 }
 
-
-
 #ifdef  USE_FULL_ASSERT
 /**
  * @brief  Reports the name of the source file and the source line number
@@ -182,7 +119,6 @@ void assert_failed(uint8_t* file, uint32_t line)
 { 
 	/* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-	F
 	/* Infinite loop */
 	while (1)
 	{
@@ -190,4 +126,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Indústria e Comércio LTDA ****** END OF FILE ****/
+/***** Hana Electronics Indï¿½stria e Comï¿½rcio LTDA ****** END OF FILE ****/

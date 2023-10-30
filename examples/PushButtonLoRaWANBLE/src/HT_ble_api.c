@@ -15,10 +15,7 @@
 
 #include "HT_ble_api.h"
 #include "bluenrg_lp_api.h"
-#include "bluenrg_lp_gap.h"
 #include "gap_profile.h"
-#include "sm.h"
-#include "bluenrg_lp_events.h"
 
 static Advertising_Set_Parameters_t adv_parameters[1];
 

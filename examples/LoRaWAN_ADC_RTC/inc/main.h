@@ -27,20 +27,13 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "rf_driver_hal.h"
+#include "rf_driver_hal_adc.h"
 #include "rf_driver_ll_rtc.h"
 #include "utils.h"
-#include "uart.h"
-#include "spi.h"
-#include "rtc.h"
-#include "sx126x.h"
-#include "sx126x_board.h"
-#include "radio.h"
+#include "adcSetup.h"
 #include "lorawan_setup.h"
-#include "lora-test.h"
-#include "LoRaMac.h"
-#include "hal_wrappers.h"
-#include "HT_push_button.h"
-#include "rf_driver_hal_power_manager.h"
+#include "lorawandefines.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 #include <stdio.h>
@@ -49,8 +42,9 @@ extern "C" {
 #include "rf_driver_hal_i2c.h"
 #include "rf_driver_hal_spi.h"
 #include "rf_driver_hal_uart.h"
-#include "rf_driver_hal_gpio.h"
+#include "rf_driver_hal_adc.h"
 //#include "stsafea_types.h"
+
 
 #define FLASH_USER_START_ADDR   (FLASH_END_ADDR - FLASH_PAGE_SIZE - 0xF)        /* Start @ of user Flash area */
 #define FLASH_USER_END_ADDR     (FLASH_END_ADDR - 0xF)                          /* End @ of user Flash area */
