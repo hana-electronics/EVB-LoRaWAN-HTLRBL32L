@@ -10,13 +10,13 @@
 
 ## Important links
 
-- [Data Brief](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/docs/datacheets/EvB%20LoRa.pdf)
+- [Data Brief](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/blob/main/docs/datasheets/EvB%20LoRa.pdf)
 - [Documentation](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/docs)
 - [Examples](https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L/tree/main/examples)
 
 ## For more informations about iMCP HTLRBL32L-SDK
 
-- [iMCP HTLRBL32L - Data Sheet](https://github.com/htmicron/htlrbl32l/blob/documents/HTLRBL32L-Datasheet/DS002%20Rev.00%20-%20Datasheet%20HTLRBL32L-xx.pdf)
+- [iMCP HTLRBL32L - Data Sheet](https://github.com/htmicron/htlrbl32l/blob/documents/HTLRBL32L-Datasheet/DS002%20Rev.01%20-%20Datasheet%20HTLRBL32L-xx.pdf)
 - [iMCP HTLRBL32L - Examples and Docs](https://github.com/htmicron/htlrbl32l/tree/SDK)
 - [iMCP HTLRBL32L - GitHub](https://github.com/htmicron/htlrbl32l)
 
