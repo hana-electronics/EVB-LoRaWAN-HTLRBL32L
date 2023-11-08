@@ -6,6 +6,8 @@ The firmware configures some necessary peripherals, like USART1 (log purposes), 
 ## SDK Version
 This example is compatible with version 1.x.x. 
 
+The SDK is available in its own [repository](https://github.com/Hana-Electronics/HE-HTLRBL32L-SDK). 
+
 ## Test Setup
 
 This section describes the basic test setup to running this application.

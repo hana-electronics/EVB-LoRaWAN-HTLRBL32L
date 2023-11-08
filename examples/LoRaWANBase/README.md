@@ -5,7 +5,9 @@ This project is a template that can be used as a foundation for an application t
 The firmware configures some necessary peripherals, like USART1 (log purposes), GPIOs (radio interruption, etc.) and I2C (STsafe).
 
 ## SDK Version
-This example is compatible with version 1.x.x.  
+This example is compatible with version 1.x.x. 
+
+The SDK is available in its own [repository](https://github.com/Hana-Electronics/HE-HTLRBL32L-SDK). 
 
 ## Test Setup
 
