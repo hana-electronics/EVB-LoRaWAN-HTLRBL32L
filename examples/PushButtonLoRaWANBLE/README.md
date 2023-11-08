@@ -32,10 +32,10 @@ If using the ST-SAFE module:
 - Save your setted keys to configure the TTN device later.
 Otherwise, you may define the LoRaWAN keys in the 'lorawandefines.h' header file after step 5.																							  
 
-2. Clone the examples/SDK branch: <br/>
+2. Clone the examples branch: <br/>
 
 ```
-git clone --single-branch --branch master https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
+git clone --single-branch --branch main https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
 ```
 
 3. Open WiSE-Studio IDE. 

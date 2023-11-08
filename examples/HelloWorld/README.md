@@ -20,10 +20,10 @@ This section describes the basic test setup to running this application.
 * FTDI (usb-serial converter – one for each device).
 
 # Executing																							  
-1. Clone the examples/SDK branch: <br/>
+1. Clone the examples branch: <br/>
 
 ```
-git clone --single-branch --branch master https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
+git clone --single-branch --branch main https://github.com/Hana-Electronics/EVB-LoRaWAN-HTLRBL32L.git
 ```
 
 2. Open WiSE-Studio IDE. 
