@@ -9,17 +9,9 @@ This example is compatible with version 1.x.x.
 
 The SDK is available in its own [repository](https://github.com/Hana-Electronics/HE-HTLRBL32L-SDK). 
 
-## Test Setup
+## Before you start
 
-This section describes the basic test setup to running this application.
-
-* [Git](https://git-scm.com/downloads).
-* [RF-Flasher Utility](https://www.st.com/en/embedded-software/stsw-bnrgflasher.html).
-* [WiSE-Studio IDE](https://www.st.com/en/embedded-software/stsw-wise-studio.html).
-* RS232 terminal ([Termite](https://www.compuphase.com/software_termite.htm) is recommended).
-* [ST-Link Debugger](https://www.st.com/en/development-tools/st-link-v2.html) to flash a firmware.
-* EVB - HTLRBL32.
-* FTDI (usb-serial converter – one for each device).
+The tutorial below is only applicable if you're flashing the EVB with an ST-LINK, you can't flash it directly with a USB-C. If you're using a USB-C cable you'll need to flash it via [bootloader](/docs/Bootloader.md).
 
 # Executing																							  
 1. Clone the examples branch: <br/>
