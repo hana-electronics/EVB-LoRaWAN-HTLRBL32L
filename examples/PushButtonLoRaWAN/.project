@@ -39,7 +39,7 @@
 	<variableList>
 		<variable>
 			<name>HE_HTLRBL32L_SDK</name>
-			<value>CHANGE%20ME</value>
+			<value>file:/C:/Projetos/REPOs/HE-HTLRBL32L-SDK</value>
 		</variable>
 	</variableList>
 </projectDescription>

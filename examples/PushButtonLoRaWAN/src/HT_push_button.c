@@ -50,7 +50,7 @@ HT_LoRa_Process HT_PB_GetLoraProcess(void) {
 
 void HT_PB_ConfigWakeupIO(void) {
 	wakeupIO.RTC_enable = 0;
-	wakeupIO.IO_Mask_Low_polarity = WAKEUP_PA4;
+	wakeupIO.IO_Mask_Low_polarity = WAKEUP_PA10;
 	wakeupIO.IO_Mask_High_polarity = 0;
 	wakeupIO.LPU_enable = 0;
 }

@@ -144,7 +144,7 @@
  * LoRaWAN application port
  * @note do not use 224. It is reserved for certification
  */
-#define LORAWAN_APP_PORT                            10
+#define LORAWAN_APP_PORT                            69
 
 /*!
  * LoRaWAN default endNode class port

@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2023 Hana Electronics Indústria e Comércio LTDA
+ Copyright (c) 2023 Hana Electronics Indï¿½stria e Comï¿½rcio LTDA
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -120,7 +120,6 @@ void assert_failed(uint8_t* file, uint32_t line)
 { 
 	/* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-	F
 	/* Infinite loop */
 	while (1)
 	{
@@ -128,4 +127,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Indústria e Comércio LTDA ****** END OF FILE ****/
+/***** Hana Electronics Indï¿½stria e Comï¿½rcio LTDA ****** END OF FILE ****/
