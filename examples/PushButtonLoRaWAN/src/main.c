@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2023 Hana Electronics Ind�stria e Com�rcio LTDA
+ Copyright (c) 2023 Hana Electronics Industria e Comercio LTDA
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,8 +37,11 @@
 #include "ht_crypto.h"
 #include "stsafea_core.h"
 
-RNG_HandleTypeDef hrng;
+#define PIN_TO_SEND GPIO_PIN_4
+#define PRESSED  1
 
+RNG_HandleTypeDef hrng;
+lora_AppData_t package; //variable to storage the message to be sent
 /*
 LoRaWAN related configs
 #include "lorawandefines.h"
@@ -68,23 +71,12 @@ int main(void) {
 	MX_RTC_Init();
 	MX_RNG_Init(&hrng);
 
-#ifdef HT_CRYPTO
-	if(keys_provisioned()){
-		status_code = ht_crypto_init();
-		if(status_code){
-			printf("STSAFE-A1xx NOT initialized. \n");
-		while(1){}
-		}
-	}else{
-		printf("LoRaWAN keys are NOT set, please flash&run provisioner firmware to set the keys\n");
-		while(1);
-	}
-#endif
 
 	LORAWAN_init(DEFAULT_REGION);
 	HT_PB_Counter_init();
 	printf("Push Button and LoRaWAN application\n");
-	
+	printf("Put PA4 pin to high to send the package\n");
+
 	while (1){
 		LORAWAN_tick();
 		HT_PB_Fsm();
@@ -127,4 +119,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Ind�stria e Com�rcio LTDA ****** END OF FILE ****/
+/***** Hana Electronics Industria e Comercio LTDA ****** END OF FILE ****/

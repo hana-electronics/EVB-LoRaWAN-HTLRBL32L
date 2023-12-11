@@ -1,18 +1,10 @@
-/*
- Copyright (c) 2023 Hana Electronics Indústria e Comércio LTDA
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-*/
+/*******************************************************
+ * File Name        : main.c
+ * Author             : Christian Lehmen
+ * Date               : 20-November-2020
+ * Description      : Certification Firmware - LoRaWAN 1.0.2
+ *********************************************************/
 
 //DEBUG CONFIG FILE:
 #ifdef DEBUG
@@ -52,7 +44,7 @@ int main(void) {
 	uint8_t status_code = 0;
 
 	/* System initialization function */
-	if (SystemInit(SYSCLK_64M, BLE_SYSCLK_NONE) != SUCCESS) {
+	if (SystemInit(SYSCLK_DIRECT_HSE, BLE_SYSCLK_NONE) != SUCCESS) {
 		/* Error during system clock configuration take appropriate action */
 		while(1);
 	}
@@ -65,26 +57,11 @@ int main(void) {
 	MX_I2C2_Init();
 	MX_CRC_Init();
 	MX_RTC_Init();
-
 #if DEEP_SLEEP_MODE == 1
 	MX_GPIO_LP_Init();
 #endif
 	MX_SPI1_Init();
-
 	MX_RNG_Init(&hrng);
-
-#ifdef HT_CRYPTO
-	if(keys_provisioned()){
-		status_code = ht_crypto_init();
-		if(status_code){
-			printf("STSAFE-A1xx NOT initialized. \n");
-		while(1){}
-		}
-	}else{
-		printf("LoRaWAN keys are NOT set, please flash&run provisioner firmware to set the keys\n");
-		while(1);
-	}
-#endif
 
 #if DEEP_SLEEP_MODE == 1
 	HT_PB_ConfigWakeupIO();
@@ -92,9 +69,9 @@ int main(void) {
 
 	LORAWAN_init(DEFAULT_REGION);
 	HT_PB_Counter_init();
-	printf("PushButton and LoRaWAN application with low power \n");
-	
-	
+	printf("HTLRBL32L - Push Button APP\n");
+
+
 	while (1){
 		LORAWAN_tick();
 		HT_PB_Fsm();
@@ -130,7 +107,7 @@ void assert_failed(uint8_t* file, uint32_t line)
 { 
 	/* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-	F
+
 	/* Infinite loop */
 	while (1)
 	{
@@ -138,4 +115,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Indústria e Comércio LTDA ****** END OF FILE ****/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

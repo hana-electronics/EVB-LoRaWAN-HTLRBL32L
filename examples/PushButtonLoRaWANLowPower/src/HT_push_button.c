@@ -34,6 +34,63 @@ extern lora_AppData_t AppData;
 
 static uint8_t payload[] = {"HelloWorld"};
 
+/* Function Prototypes  -------------------------------------------------------*/
+
+/*!******************************************************************
+ * \fn static void HT_PB_SendFrameState(void)
+ * \brief Send a LoRa frame based on the previous event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_SendFrameState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_PushButtonState(void)
+ * \brief Push button handler state.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_PushButtonState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_WaitForEventState(void)
+ * \brief Keep waiting for an event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_WaitForEventState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_SendLoraFrame(void)
+ * \brief Sends a LoRaWAN frame containing what was received by bluetooth.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_SendLoraFrame(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_RxLoraState(void)
+ * \brief LoRaWAN RX handler. Saves RX buffer to send it in the next bluetooth read event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_RxLoraState(void);
+
 /* Functions  ----------------------------------------------------------------*/
 
 void HT_PB_SetState(HT_Fsm new_state) {

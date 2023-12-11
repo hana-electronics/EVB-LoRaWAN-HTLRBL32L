@@ -28,22 +28,12 @@
 #include "lorawan_setup.h"
 #include "sx126x.h"
 #include "rf_driver_hal_power_manager.h"
-#include "LoraMacTypes.h" // modified
-
-
 
 /* Defines  ------------------------------------------------------------------*/
+
 #define DEEP_SLEEP_MODE 1										/* </ Enable/disable deep sleep mode. */
-#define PAYLOAD_SIZE 19 										/** </ 19 + event = 20 bytes */
+
 /* Typedef -----------------------------------------------------------*/
-/**
- * \enum HT_Event
- * \brief Specifies all events that can gerenate a LoRa transmission.
- */
-typedef enum {
-	PUSH_BUTTON = 0,											/* </ Event caused by a push button. Button could be implemented in mobile app. */
-	WRITE_PAYLOAD												/* </ Event caused by the write without response characteristic. */
-} HT_Event;
 
 /**
  * \enum HT_Fsm
@@ -52,7 +42,6 @@ typedef enum {
 typedef enum {
 	SM_WAIT_FOR_EVENT = 0,										/* </ Wait for an event state. */
 	SM_PUSH_BUTTON_HANDLER,										/* </ Push button handler state. */
-	SM_WRITE_PAYLOAD_HANDLER,									/* </ Write without response handler state. */
 	SM_SEND_FRAME,												/* </ Send LoRa frame state. */
 	SM_RX_LORA													/* </ RX LoRa state. */
 } HT_Fsm;
@@ -66,15 +55,6 @@ typedef enum {
 	PROCESS_LORA_RX_WINDOW_2,									/* </ LoRa RX window 2 process. */
 	PROCESS_LORA_READY											/* </ LoRa ready. */
 } HT_LoRa_Process;
-
-/**
- * \struct HT_Payload
- * \brief LoRa payload.
- */
-typedef struct {
-	uint8_t event;												/* </ Event buffer. */
-	uint8_t data[PAYLOAD_SIZE];									/* </ Data buffer. */
-} HT_Payload;
 
 /* Functions ------------------------------------------------------------------*/
 
@@ -90,7 +70,7 @@ typedef struct {
 void HT_PB_Fsm(void);
 static void OnPushCounterEvent(void *context);
 
-#if DEEP_SLEEP_MODE == 1
+#if DEEP_SLEEP_MODE == 0
 /*!******************************************************************
  * \fn void HT_PB_ConfigWakeupIO(void)
  * \brief Configures all wake up sources.
@@ -139,64 +119,6 @@ HT_LoRa_Process HT_PB_GetLoraProcess(void);
 void HT_PB_SetLoraProcess(HT_LoRa_Process process);
 
 void HT_PB_Counter_init(void);
-
-/* Function Prototypes  -------------------------------------------------------*/
-
-/*!******************************************************************
- * \fn static void HT_PB_SendFrameState(void)
- * \brief Send a LoRa frame based on the previous event.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_SendFrameState(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_PushButtonState(void)
- * \brief Push button handler state.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_PushButtonState(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_WaitForEventState(void)
- * \brief Keep waiting for an event.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_WaitForEventState(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_SendLoraFrame(void)
- * \brief Sends a LoRaWAN frame containing what was received by bluetooth.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_SendLoraFrame(void);
-
-/*!******************************************************************
- * \fn static void HT_PB_RxLoraState(void)
- * \brief LoRaWAN RX handler. Saves RX buffer to send it in the next bluetooth read event.
- *
- * \param[in]  none
- * \param[out] none
- *
- * \retval none
- *******************************************************************/
-static void HT_PB_RxLoraState(void);
-
 
 #endif /* __HT_API__ */
 
