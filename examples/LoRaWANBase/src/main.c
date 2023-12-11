@@ -92,7 +92,6 @@ int main(void) {
 	package.Buff = (uint8_t*)"Hi!! this is a LoRaWAN package!"; // Message
 	package.BuffSize = strlen((const char*)package.Buff); // Message size
 	package.Port = LORAWAN_APP_PORT;					//LoRaWAN port
-	lorawan_send(&package);	//function that sends the package
 
 	while (1){
 		LORAWAN_tick();
