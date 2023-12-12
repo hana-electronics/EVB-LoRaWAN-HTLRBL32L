@@ -10,7 +10,7 @@ environment/project/fr.ac6.ide.wise.managedbuild.projecttype.exe.config.debug.72
 indexer/indexAllFiles=true
 indexer/indexAllHeaderVersions=false
 indexer/indexAllVersionsSpecificHeaders=
-indexer/indexOnOpen=false
+indexer/indexOnOpen=true
 indexer/indexUnusedHeadersWithDefaultLang=true
 indexer/indexerId=org.eclipse.cdt.core.fastIndexer
 indexer/skipFilesLargerThanMB=8
