@@ -134,7 +134,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
 void HAL_PWR_MNGR_WakeupIOCallback(uint32_t source) {
 
 #if DEEP_SLEEP_MODE == 1
-  printf("Waking up..\n");
+  printf("\n .: Waking up :.\n");
   HT_PB_SetState(SM_PUSH_BUTTON_HANDLER);
 #endif
 

@@ -69,7 +69,8 @@ int main(void) {
 
 	LORAWAN_init(DEFAULT_REGION);
 	HT_PB_Counter_init();
-	printf("HTLRBL32L - Push Button APP\n");
+	printf("=== LoRaWAN application with low power ===\n");
+	printf("=== Set the pin PA4 to high to wake up the board and send a lorawan package! ===\n");
 
 
 	while (1){
@@ -107,7 +108,6 @@ void assert_failed(uint8_t* file, uint32_t line)
 { 
 	/* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
 	/* Infinite loop */
 	while (1)
 	{

@@ -32,7 +32,7 @@ static TimerEvent_t PushCounter;
 static int PushCounterFlag = 1;
 extern lora_AppData_t AppData;
 
-static uint8_t payload[] = {"HelloWorld"};
+static uint8_t payload[] = {"This is a LoRaWAN package!"};
 
 /* Function Prototypes  -------------------------------------------------------*/
 
@@ -136,7 +136,7 @@ static void HT_PB_WaitForEventState(void) {
 	/* Power Save Request */
 	if(lora_process == PROCESS_LORA_READY && LORA_JoinStatus () == LORA_SET) {
 #if DEEP_SLEEP_MODE == 1
-		printf("\r\nSleeping....\n");
+		printf("\n .: Sleeping :.\n");
 		HT_PB_RadioSleep();
 		HAL_PWR_MNGR_Request(POWER_SAVE_LEVEL_STOP_NOTIMER, wakeupIO, &stopLevel);		
 #else
@@ -162,7 +162,7 @@ static void HT_PB_PushButtonState(void) {
 
 static void HT_PB_SendFrameState(void) {
 
-	printf("Send frame state...\n");
+	printf(".: Send frame state :.\n");
 	HT_PB_SendLoraFrame();
 
 	state = SM_WAIT_FOR_EVENT;
