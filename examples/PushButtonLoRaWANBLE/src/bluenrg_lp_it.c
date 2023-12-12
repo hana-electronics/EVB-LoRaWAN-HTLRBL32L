@@ -72,7 +72,6 @@ NOSTACK_FUNCTION(NORETURN_FUNCTION(void HardFault_IRQHandler(void)))
 	printf("\nHard fault\n");
 	while (1);
 }
-
 /**
   * @brief This function handles Pendable request for system service.
   */
@@ -96,20 +95,21 @@ void SPI1_IRQHandler(void)
   HAL_SPI_IRQHandler(&hspi1);
 
 }
-	
-void GPIOA_IRQHandler(void){ 
+
+void GPIOA_IRQHandler(void){
   static uint32_t debounce_last = 0;
-   
+
   if(HAL_EXTI_GetPending(&Button_EXTI_InitStructure)){
-    if((debounce_count - debounce_last) >= 35) { 
+    if((debounce_count - debounce_last) >= 35) {
       /* Add the SW no bounce */
       debounce_last = debounce_count;
-      
+
       /* Handle user button press in dedicated function */
       HAL_EXTI_IRQHandler(&Button_EXTI_InitStructure);
     }
   }
 }
+
 void GPIOB_IRQHandler(void){  
   if(HAL_EXTI_GetPending( &HEXTI_InitStructure )){
     HAL_EXTI_IRQHandler( &HEXTI_InitStructure );
@@ -132,17 +132,54 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
 }
 
 void HAL_PWR_MNGR_WakeupIOCallback(uint32_t source) {
-
-#if DEEP_SLEEP_MODE == 1
   printf("Waking up..\n");
   HT_PB_SetState(SM_PUSH_BUTTON_HANDLER);
-#endif
-
 }
+
 void RTC_IRQHandler(void)
 {
+	//printf("RTC_IRQHandler\n");
 	TimerIrqHandler( );
 
+}
+
+void BLE_WKUP_IRQHandler(void) {
+  HAL_VTIMER_WakeUpCallback();
+}
+
+void CPU_WKUP_IRQHandler(void) {
+  HAL_VTIMER_TimeoutCallback();
+}
+
+void BLE_ERROR_IRQHandler(void) {
+  volatile uint32_t debug_cmd;
+
+  BLUE->DEBUGCMDREG |= 1;
+
+  /* If the device is configured with
+     System clock = 64 MHz and BLE clock = 16 MHz
+     a register read is necessary to end fine
+     the clear interrupt register operation,
+     due the AHB down converter latency */
+  debug_cmd = BLUE->DEBUGCMDREG;
+}
+
+void BLE_TX_RX_IRQHandler(void) {
+  uint32_t blue_status = BLUE->STATUSREG;
+  uint32_t blue_interrupt = BLUE->INTERRUPT1REG;
+
+  /** clear all pending interrupts */
+  BLUE->INTERRUPT1REG = blue_interrupt;
+
+  BLE_STACK_RadioHandler(blue_status|blue_interrupt);
+  HAL_VTIMER_RadioTimerIsr();
+
+  /* If the device is configured with
+     System clock = 64 MHz and BLE clock = 16 MHz
+     a register read is necessary to end fine
+     the clear interrupt register operation,
+     due the AHB down converter latency */
+  blue_interrupt = BLUE->INTERRUPT1REG;
 }
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

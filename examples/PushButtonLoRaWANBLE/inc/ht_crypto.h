@@ -22,6 +22,12 @@ typedef enum keytypes{
 
 StSafeA_ResponseCode_t ht_crypto_init(void);
 
+//USED ONLY ON DEBUG MODE TO WRITE KEYS HERE
+//int32_t wrap_key(StSafeA_Handle_t* handle, uint8_t slot, uint8_t *key, uint8_t size, uint8_t *wrapped_key);
+//void HT_STSAFE_Write(StSafeA_Handle_t* handle, uint8_t zone, uint8_t offset, uint8_t *buffer, uint8_t size);
+//void HT_STSAFE_EchoCmd(StSafeA_Handle_t* handle);
+//SecureElementStatus_t get_key(StSafeA_Handle_t* handle, uint8_t *key, ht_key_types keyID,uint8_t activation_mode);
+//////////////////////////////////////////////////////
 SecureElementStatus_t ht_aes_encrypt( uint8_t* buffer, uint16_t size, KeyIdentifier_t keyID, uint8_t* encBuffer,uint8_t activation_mode );
 SecureElementStatus_t stsafe_aes_decrypt( uint8_t* buffer, uint16_t size, KeyIdentifier_t keyID, uint8_t* encBuffer );
 SecureElementStatus_t ht_compute_cmac( uint8_t *micBxBuffer, uint8_t *buffer, uint16_t size, KeyIdentifier_t keyID, uint32_t* cmac,uint8_t activation_mode );

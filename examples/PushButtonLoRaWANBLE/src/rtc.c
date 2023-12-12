@@ -224,6 +224,7 @@ uint32_t HW_RTC_GetCalendarTime( uint16_t *mSeconds)
 
 TimerTime_t HW_RTC_Tick2ms( uint32_t tick ){
 
+/*return( ( timeMicroSec * RTC_ALARM_TIME_BASE ) ); */
   uint32_t seconds = tick>>N_PREDIV_S;
   tick = tick&PREDIV_S;
   return  ( ( seconds*1000 ) + ((tick*1000)>>N_PREDIV_S) );
@@ -249,6 +250,7 @@ uint32_t HW_RTC_SetTimerContext( void ){
 
 static uint64_t HW_RTC_GetCalendarValue( RTC_DateTypeDef* RTC_DateStruct, RTC_TimeTypeDef* RTC_TimeStruct ){
 
+	//printf("Acquiring calendar value\n");
   uint64_t calendarValue = 0;
 //  uint32_t first_read;
   uint32_t correction;
@@ -258,8 +260,14 @@ static uint64_t HW_RTC_GetCalendarValue( RTC_DateTypeDef* RTC_DateStruct, RTC_Ti
   HAL_RTC_GetTime( &hrtc, RTC_TimeStruct, RTC_FORMAT_BIN );
 
    /* make sure it is correct due to asynchronus nature of RTC*/
+ // do {
+   // first_read = LL_RTC_TIME_GetSubSecond(RTC);
 	HAL_RTC_GetTime( &hrtc, RTC_TimeStruct, RTC_FORMAT_BIN );
   	HAL_RTC_GetDate( &hrtc, RTC_DateStruct, RTC_FORMAT_BIN );
+	//	printf("first read: %u\n",first_read);
+		//HAL_Delay(1);
+		
+// // } while (first_read != LL_RTC_TIME_GetSubSecond(RTC) );
 
   /* calculte amount of elapsed days since 01/01/2000 */
   seconds= DIVC( (DAYS_IN_YEAR*3 + DAYS_IN_LEAP_YEAR)* RTC_DateStruct->Year , 4);
@@ -280,6 +288,7 @@ static uint64_t HW_RTC_GetCalendarValue( RTC_DateTypeDef* RTC_DateStruct, RTC_Ti
   
 
   calendarValue = (((uint64_t) seconds)<<N_PREDIV_S) + ( PREDIV_S - RTC_TimeStruct->SubSeconds);
+//	printf("calendarValue: %lu\n",(uint64_t)calendarValue);
   return( calendarValue );
 }
 
@@ -306,10 +315,12 @@ void HW_RTC_StopAlarm( void )
   /* Clear RTC Alarm Flag */
   __HAL_RTC_ALARM_CLEAR_FLAG( &hrtc, RTC_FLAG_ALRAF);
   /* Clear the EXTI's line Flag for RTC Alarm */
+//  __HAL_RTC_ALARM_EXTI_CLEAR_FLAG();
 }
 
 uint32_t HW_RTC_ms2Tick( TimerTime_t timeMilliSec )
 {
+/*return( ( timeMicroSec / RTC_ALARM_TIME_BASE ) ); */
   return ( uint32_t) ( ( ((uint64_t)timeMilliSec) * CONV_DENOM ) / CONV_NUMER );
 }
 
@@ -358,6 +369,7 @@ static void HW_RTC_StartWakeUpAlarm( uint32_t timeoutValue )
 
   /* calc hours */
   rtcAlarmHours = RTC_TimeStruct.Hours;
+	//printf("=======\nReference Time\n=======\nRTC hours: %u\n",RTC_TimeStruct.Hours);
   while (timeoutValue >= SECONDS_IN_1HOUR)
   {
     timeoutValue -= SECONDS_IN_1HOUR;
@@ -366,6 +378,7 @@ static void HW_RTC_StartWakeUpAlarm( uint32_t timeoutValue )
 
   /* calc minutes */
   rtcAlarmMinutes = RTC_TimeStruct.Minutes;
+	//printf("RTC minutes: %u\n",RTC_TimeStruct.Minutes);
 
   while (timeoutValue >= SECONDS_IN_1MINUTE)
   {
@@ -375,6 +388,7 @@ static void HW_RTC_StartWakeUpAlarm( uint32_t timeoutValue )
 
   /* calc seconds */
   rtcAlarmSeconds =  RTC_TimeStruct.Seconds + timeoutValue;
+ //printf("RTC seconds: %u\n",RTC_TimeStruct.Seconds);
   /***** correct for modulo********/
   while (rtcAlarmSubSeconds >= (PREDIV_S+1))
   {
@@ -418,7 +432,7 @@ static void HW_RTC_StartWakeUpAlarm( uint32_t timeoutValue )
   /* Set RTC_AlarmStructure with calculated values*/
   RTC_AlarmStructure.AlarmTime.SubSeconds = PREDIV_S-rtcAlarmSubSeconds;
   RTC_AlarmStructure.AlarmSubSecondMask  = RTC_ALARMSUBSECONDMASK_NONE;
-  RTC_AlarmStructure.AlarmTime.Seconds = rtcAlarmSeconds;
+	RTC_AlarmStructure.AlarmTime.Seconds = rtcAlarmSeconds;
   RTC_AlarmStructure.AlarmTime.Minutes = rtcAlarmMinutes;
   RTC_AlarmStructure.AlarmTime.Hours   = rtcAlarmHours;
   RTC_AlarmStructure.AlarmDateWeekDay    = ( uint8_t )rtcAlarmDays;
@@ -428,6 +442,9 @@ static void HW_RTC_StartWakeUpAlarm( uint32_t timeoutValue )
   RTC_AlarmStructure.Alarm = RTC_ALARM_A;
   RTC_AlarmStructure.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
   RTC_AlarmStructure.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
+
+//	printf("========\nALARM: \nSeconds:%u\nMinutes:%u\nHours: %u\nWeekDay:%u\nSubseconds:%u\n========\n",RTC_AlarmStructure.AlarmTime.Seconds,RTC_AlarmStructure.AlarmTime.Minutes,
+	//RTC_AlarmStructure.AlarmTime.Hours,RTC_AlarmStructure.AlarmDateWeekDay,RTC_AlarmStructure.AlarmTime.SubSeconds);
 	
 	  /* Set RTC_Alarm */
 	HAL_RTC_SetAlarm_IT( &hrtc, &RTC_AlarmStructure, RTC_FORMAT_BIN );
