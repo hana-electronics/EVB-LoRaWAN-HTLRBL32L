@@ -32,7 +32,64 @@ static TimerEvent_t PushCounter;
 static int PushCounterFlag = 1;
 extern lora_AppData_t AppData;
 
-static uint8_t payload[] = {"HelloWorld"};
+static uint8_t payload[] = {"This is a LoRaWAN package!"};
+
+/* Function Prototypes  -------------------------------------------------------*/
+
+/*!******************************************************************
+ * \fn static void HT_PB_SendFrameState(void)
+ * \brief Send a LoRa frame based on the previous event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_SendFrameState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_PushButtonState(void)
+ * \brief Push button handler state.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_PushButtonState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_WaitForEventState(void)
+ * \brief Keep waiting for an event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_WaitForEventState(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_SendLoraFrame(void)
+ * \brief Sends a LoRaWAN frame containing what was received by bluetooth.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_SendLoraFrame(void);
+
+/*!******************************************************************
+ * \fn static void HT_PB_RxLoraState(void)
+ * \brief LoRaWAN RX handler. Saves RX buffer to send it in the next bluetooth read event.
+ *
+ * \param[in]  none
+ * \param[out] none
+ *
+ * \retval none
+ *******************************************************************/
+static void HT_PB_RxLoraState(void);
 
 /* Functions  ----------------------------------------------------------------*/
 
@@ -79,7 +136,7 @@ static void HT_PB_WaitForEventState(void) {
 	/* Power Save Request */
 	if(lora_process == PROCESS_LORA_READY && LORA_JoinStatus () == LORA_SET) {
 #if DEEP_SLEEP_MODE == 1
-		printf("\r\nSleeping....\n");
+		printf("\n .: Sleeping :.\n");
 		HT_PB_RadioSleep();
 		HAL_PWR_MNGR_Request(POWER_SAVE_LEVEL_STOP_NOTIMER, wakeupIO, &stopLevel);		
 #else
@@ -105,7 +162,7 @@ static void HT_PB_PushButtonState(void) {
 
 static void HT_PB_SendFrameState(void) {
 
-	printf("Send frame state...\n");
+	printf(".: Send frame state :.\n");
 	HT_PB_SendLoraFrame();
 
 	state = SM_WAIT_FOR_EVENT;

@@ -37,13 +37,11 @@ static void LoraStartTx(TxEventType_t EventType);
 /* tx timer callback function*/
 static void OnTxTimerEvent( void* context );
 
-#if( OVER_THE_AIR_ACTIVATION != 0 )
-/* start the join process*/
-static void LoraStartJoin(TxEventType_t EventType);
+/* start the joining process*/
+static void LoraStartJoin(TxEventType_t EventType); // modified
 
-/* join timer callback function*/
-static void OnJoinEvent( void* context );
-#endif
+/* join callback function*/
+static void OnJoinEvent( void* context ); // modified
 
 //static void OnTxTesteTimer( void* context );
 /* tx timer callback function*/
@@ -65,9 +63,7 @@ LoraFlagStatus AppProcessRequest=LORA_RESET;
 
 
 static TimerEvent_t TxTimer;
-
-static TimerEvent_t JoinTimer;
-																																												
+static TimerEvent_t JoinTimer; // modified
 
 static  LoRaParam_t LoRaParamInit= {LORAWAN_ADR_STATE,
                                     LORAWAN_DEFAULT_DATA_RATE,
@@ -88,10 +84,7 @@ void LORAWAN_init(uint8_t region){
 	LORA_Init( &LoRaMainCallbacks, &LoRaParamInit);
 	//Initializes LoRaWAN join procedure(OTAA/ABP) related code
 	LORA_Join();
-#if( OVER_THE_AIR_ACTIVATION != 0 )
-	//Starts LoRaWAN periodic join timer
 	LoraStartJoin(TX_ON_TIMER);
-#endif
 	//clears LoRa Radio Interruptions
 	SX126xClearIrqStatus( IRQ_RADIO_ALL );
 	//Starts LoRaWAN periodic TX timer
@@ -121,7 +114,7 @@ void setRegion(uint8_t region){
 //    REGION_EU433 = 4;
 //    REGION_EU868 = 5;
 //    REGION_KR920 = 6;
-//    REGION_IN865 = 7;
+//    REGION_IN865  = 7;
 //    REGION_US915 = 8;
 //    REGION_RU864 = 9;
 	
@@ -138,8 +131,10 @@ uint8_t getRegion(void){
 
 void lorawan_send(lora_AppData_t *appData){
 	
+//	printf("===============================================================================\n");
 	printf("\n-LoRaWAN TX-\n");
-
+//	printf("===============================================================================\n");
+	
 	if ( LORA_JoinStatus () != LORA_SET)
   {
     /*Not joined, try again later*/
@@ -148,9 +143,10 @@ void lorawan_send(lora_AppData_t *appData){
   }
 	appData->BuffSize = strlen((const char*)appData->Buff);
 
+//  printf("\nSending LoRaWAN Payload: \"%s\"", appData->Buff);
   LORA_send( appData, LORAWAN_DEFAULT_CONFIRM_MSG_STATE);
 	
-
+	
 }
 
 void LoraMacProcessNotify(void)
@@ -209,13 +205,13 @@ static void LORA_RxData( lora_AppData_t *AppData ){
 
 static void LoraStartTx(TxEventType_t EventType){
 	
-	if (EventType == TX_ON_TIMER)
-	{
-	  /* send everytime timer elapses */
+    if (EventType == TX_ON_TIMER)
+    {
+      /* send everytime timer elapses */
 			//Sets callback function
-	  TimerInit( &TxTimer, OnTxTimerEvent );
+      TimerInit( &TxTimer, OnTxTimerEvent );
 			//Sets alarm total time
-	  TimerSetValue( &TxTimer,  APP_TX_DUTYCYCLE);
+      TimerSetValue( &TxTimer,  APP_TX_DUTYCYCLE);		
 			//Callback call
 			
 #if( OVER_THE_AIR_ACTIVATION == 0 )
@@ -228,23 +224,24 @@ static void LoraStartTx(TxEventType_t EventType){
 }
 
 static void OnTxTimerEvent( void* context ){
-	//Starts timer
-	TimerStart(&TxTimer);
+		//Starts timer
+		TimerStart(&TxTimer);
 
-	//Sets send flag = true
-	lora_AppData_t appData;
-
-	appData.Buff = (uint8_t*)"test78645";
-	appData.BuffSize = strlen((const char*)appData.Buff);
-	appData.Port = LORAWAN_APP_PORT;
+		//Sets send flag = true	
+		lora_AppData_t appData;
+		
+		appData.Buff = (uint8_t*)"test78645";
+		appData.BuffSize = strlen((const char*)appData.Buff);
+		appData.Port = LORAWAN_APP_PORT;
 	
 	
-	lorawan_send(&appData);
+		lorawan_send(&appData);
 
   }
 
-#if( OVER_THE_AIR_ACTIVATION != 0 )
 static void LoraStartJoin(TxEventType_t EventType){
+
+	#if( OVER_THE_AIR_ACTIVATION == 1 )
 	if (EventType == TX_ON_TIMER)
 	{
 	/* send everytime timer elapses */
@@ -255,16 +252,18 @@ static void LoraStartJoin(TxEventType_t EventType){
 		//Callback call
 	    TimerStart(&JoinTimer);
 	}
+	#endif
+
 }
 
 static void OnJoinEvent( void* context ){
 
+	TimerStart(&JoinTimer);
+
 	if ( LORA_JoinStatus () != LORA_SET)
 	{
-		TimerStop(&JoinTimer);
 	    /*Not joined, try again later*/
 	    LORA_Join();
-	    TimerStart(&JoinTimer);
 	    return;
 	}
 	else
@@ -272,7 +271,6 @@ static void OnJoinEvent( void* context ){
 		TimerStop(&JoinTimer);
 	}
 }
-#endif
 
 static void LORA_ConfirmClass ( DeviceClass_t Class ){
 
@@ -295,18 +293,18 @@ static void LORA_TxNeeded ( void )
 }																		
 
 void set_certif_running(uint8_t status){
-	if(!status && certif_running){   //if test mode changes to false enable TX regular cycle
-			HAL_Delay(100);
-			printf("stopped certification cycle - re-enabling regular cycle\n");
-			TimerInit( &TxTimer, OnTxTimerEvent );
-	TimerSetValue( &TxTimer,  APP_TX_DUTYCYCLE);
-			TimerStart( &TxTimer);
-
-	}else if(status && !certif_running){
-			printf("certification cycle started - stopping regular tx timer\n");
-			TimerStop(&TxTimer);
-	}
-	certif_running = status;
+		if(!status && certif_running){   //if test mode changes to false enable TX regular cycle
+				HAL_Delay(100);
+				printf("stopped certification cycle - re-enabling regular cycle\n");
+				TimerInit( &TxTimer, OnTxTimerEvent );
+        TimerSetValue( &TxTimer,  APP_TX_DUTYCYCLE);
+				TimerStart( &TxTimer);
+			 
+		}else if(status && !certif_running){
+				printf("certification cycle started - stopping regular tx timer\n");
+				TimerStop(&TxTimer);
+		}
+		certif_running = status;
 	
 }
 

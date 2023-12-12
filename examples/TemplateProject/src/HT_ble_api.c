@@ -59,15 +59,15 @@ void hci_le_connection_update_complete_event(uint8_t Status, uint16_t Connection
                                              uint16_t Conn_Latency,
                                              uint16_t Supervision_Timeout)
 {
-    printf("hci_le_connection_update_complete_event; %d\r\n", Conn_Interval);
+//    printf("hci_le_connection_update_complete_event; %d\r\n", Conn_Interval);
 }
 
 void HT_BLE_BleConfig(void) {
     uint8_t ret;
     uint16_t service_handle, dev_name_char_handle, appearance_char_handle;
-    uint8_t device_name[] = {"PushButton"};
+    uint8_t device_name[] = {"EVB_LoRa"};
     static uint8_t adv_data[] = {0x02, AD_TYPE_FLAGS, FLAG_BIT_LE_GENERAL_DISCOVERABLE_MODE | FLAG_BIT_BR_EDR_NOT_SUPPORTED,
-                                 11, AD_TYPE_COMPLETE_LOCAL_NAME, 'P', 'u', 's', 'h', 'B', 'u', 't', 't', 'o', 'n'};
+                                 9, AD_TYPE_COMPLETE_LOCAL_NAME, 'E', 'V', 'B', '_', 'L', 'o', 'R', 'a'};
 
     /* Set the TX power 0 dBm */
     aci_hal_set_tx_power_level(0, 25);

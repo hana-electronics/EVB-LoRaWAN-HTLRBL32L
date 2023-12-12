@@ -32,7 +32,7 @@ static TimerEvent_t PushCounter;
 static int PushCounterFlag = 1;
 extern lora_AppData_t AppData;
 
-static uint8_t payload[] = {"HelloWorld"};
+static uint8_t payload[] = {"This is a LoRaWAN package!"};
 
 /* Functions  ----------------------------------------------------------------*/
 
@@ -55,12 +55,12 @@ void HT_PB_ConfigWakeupIO(void) {
 	wakeupIO.LPU_enable = 0;
 }
 
-static void HT_PB_RadioSleep(void){
-	SleepParams_t params = {0};
-
-	params.Fields.WarmStart = 1;
-	SX126xSetSleep(params);
-}
+//static void HT_PB_RadioSleep(void){
+//	SleepParams_t params = {0};
+//
+//	params.Fields.WarmStart = 1;
+//	SX126xSetSleep(params);
+//}
 
 static void HT_PB_SendLoraFrame(void) {
 	lora_AppData_t tx_payload;
@@ -105,7 +105,7 @@ static void HT_PB_PushButtonState(void) {
 
 static void HT_PB_SendFrameState(void) {
 
-	printf("Send frame state...\n");
+	printf("\n=== Send frame state ===\n");
 	HT_PB_SendLoraFrame();
 
 	state = SM_WAIT_FOR_EVENT;

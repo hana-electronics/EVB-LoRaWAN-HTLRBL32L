@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2023 Hana Electronics Indústria e Comércio LTDA
+ Copyright (c) 2023 Hana Electronics Indï¿½stria e Comï¿½rcio LTDA
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -22,22 +22,13 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "uart.h"
-#include "spi.h"
-#include "rtc.h"
-#include "crc.h"
-#include "i2c.h"
-#include "sx126x.h"
-#include "sx126x_board.h"
-#include "radio.h"
-#include "peripheral_init.h"
-#include "lorawan_setup.h"
-#include "lora-test.h"
-#include "LoRaMac.h"
-#include "hal_wrappers.h"
 #include "ht_crypto.h"
 #include "stsafea_core.h"
+#include "i2c.h"
+#include "crc.h"
+#include "peripheral_init.h"
 
+NO_INIT(uint32_t dyn_alloc_a[DYNAMIC_MEMORY_SIZE >> 2]);
 RNG_HandleTypeDef hrng;
 
 /*LoRaWAN related configs -> lorawandefines.h
@@ -65,14 +56,13 @@ int main(void) {
 	}
 	HAL_Init();
 	IRQHandler_Config();
-	HAL_NVIC_DisableIRQ(GPIOA_IRQn);
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
 	MX_SPI1_Init();
 	MX_I2C2_Init();
 	MX_CRC_Init();
 	MX_RTC_Init();
-
+	MX_RNG_Init(&hrng);
 
 #ifdef HT_CRYPTO
 	if(keys_provisioned()){
@@ -126,4 +116,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Indústria e Comércio LTDA ****** END OF FILE ****/
+/***** Hana Electronics Indï¿½stria e Comï¿½rcio LTDA ****** END OF FILE ****/

@@ -149,7 +149,7 @@ static void HT_PB_SendLoraFrame(void) {
 	if(strlen((char *)payload.data) == 0)
 		sprintf((char *)payload.data, "Hello, World!");
 
-	tx_payload.Buff = (uint8_t *)&payload;
+	tx_payload.Buff = (uint8_t *)&payload.data;
 	tx_payload.BuffSize = strlen((char *)payload.data) == 0 ? PAYLOAD_SIZE + 1 : strlen((char *)payload.data) + 1;
 	tx_payload.Port = LORAWAN_APP_PORT;
 

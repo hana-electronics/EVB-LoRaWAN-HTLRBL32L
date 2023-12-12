@@ -89,18 +89,14 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-
 void ModulesTick(void);
 void ModulesInit(void);
-
 void MX_GPIO_LP_Init(void);
-
 void HT_GPIO_UserButtonHandler(uint32_t Line);
 void HT_GPIO_EnableButtonIRQN(void);
 /* Private variables ---------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
-void HSM_Init(void);
 
 /* Private variables ---------------------------------------------------------*/
 

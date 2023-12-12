@@ -33,7 +33,7 @@
 
 
 /* Defines  ------------------------------------------------------------------*/
-#define DEEP_SLEEP_MODE 1										/* </ Enable/disable deep sleep mode. */
+#define DEEP_SLEEP_MODE 0										/* </ Enable/disable deep sleep mode. */
 #define PAYLOAD_SIZE 19 										/** </ 19 + event = 20 bytes */
 /* Typedef -----------------------------------------------------------*/
 /**

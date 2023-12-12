@@ -1,55 +1,29 @@
-/*
- Copyright (c) 2023 Hana Electronics Ind�stria e Com�rcio LTDA
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-*/
+/*******************************************************
+ * File Name        : main.c
+ * Author             : Christian Lehmen
+ * Date               : 20-November-2020
+ * Description      : Certification Firmware - LoRaWAN 1.0.2
+ *********************************************************/
 
 //DEBUG CONFIG FILE:
 #ifdef DEBUG
 #include "debug_configs.h"
-
 #endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "uart.h"
-#include "spi.h"
-#include "rtc.h"
-#include "crc.h"
-#include "i2c.h"
-#include "sx126x.h"
-#include "sx126x_board.h"
-#include "radio.h"
-#include "peripheral_init.h"
-#include "lorawan_setup.h"
-#include "lora-test.h"
-#include "LoRaMac.h"
-#include "hal_wrappers.h"
+
 #include "ht_crypto.h"
 #include "stsafea_core.h"
+#include "i2c.h"
+#include "crc.h"
+#include "peripheral_init.h"
+
+NO_INIT(uint32_t dyn_alloc_a[DYNAMIC_MEMORY_SIZE >> 2]);
+
 
 RNG_HandleTypeDef hrng;
-
-/*LoRaWAN related configs -> lorawandefines.h
- *
- * LoRaWAN functions 	  -> loranwan_setup.c
- *
- * DON'T FORGET:
- *
- * LORAWAN_TICK() on the while(1) loop if you're gonna use LoRa
- *
- * If you're gonna use BLE put the function BLE_STACK_Tick() in the loop;
- */
 
 /**
  * @brief  The application entry point.
@@ -59,36 +33,103 @@ int main(void) {
 	uint8_t status_code = 0;
 
 	/* System initialization function */
-	if (SystemInit(SYSCLK_64M, BLE_SYSCLK_32M) != SUCCESS) {
+	//if (SystemInit(SYSCLK_64M, BLE_SYSCLK_NONE) != SUCCESS) {
+	if (SystemInit(SYSCLK_DIRECT_HSE, BLE_SYSCLK_32M) != SUCCESS){
 		/* Error during system clock configuration take appropriate action */
 		while(1);
 	}
 	HAL_Init();
 	IRQHandler_Config();
-	HAL_NVIC_DisableIRQ(GPIOA_IRQn);
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
+	MX_GPIO_LP_Init();
 	MX_SPI1_Init();
 	MX_I2C2_Init();
 	MX_CRC_Init();
 	MX_RTC_Init();
+	MX_RNG_Init(&hrng);
 
 
-#ifdef HT_CRYPTO
-	if(keys_provisioned()){
-		status_code = ht_crypto_init();
-		if(status_code){
-			printf("STSAFE-A1xx NOT initialized. \n");
-		while(1){}
-		}
-	}else{
-		printf("LoRaWAN keys are NOT set, please flash&run provisioner firmware to set the keys\n");
+	printf("=====BLE and LoRaWAN Application====\n");
+	printf("=====Search for EVB_Lora on your BLE app to connect to the board====\n");
+
+	LORAWAN_init(DEFAULT_REGION);
+	while(!LORA_JoinStatus()){ // wait for join accept
+		LORAWAN_tick();
+	}
+
+	ModulesInit();
+
+	HT_BLE_BleConfig();
+	HT_BLE_SetDeviceConnectable();
+
+	HT_PB_ConfigWakeupIO();
+
+	HT_PB_Counter_init();
+
+	while (1){
+		ModulesTick();
+		LORAWAN_tick();
+		HT_PB_app();
+	}
+
+}
+
+void ModulesInit(void) {
+	uint8_t ret;
+	BLE_STACK_InitTypeDef BLE_STACK_InitParams = BLE_STACK_INIT_PARAMETERS;
+
+	LL_AHB_EnableClock(LL_AHB_PERIPH_PKA|LL_AHB_PERIPH_RNG);
+
+	/* BlueNRG-LP stack init */
+	ret = BLE_STACK_Init(&BLE_STACK_InitParams);
+	if (ret != BLE_STATUS_SUCCESS) {
+		printf("Error in BLE_STACK_Init() 0x%02x\r\n", ret);
 		while(1);
 	}
-#endif
-	
-	while (1){
 
+	BLECNTR_InitGlobal();
+
+	HAL_VTIMER_InitType VTIMER_InitStruct = {HS_STARTUP_TIME, INITIAL_CALIBRATION, CALIBRATION_INTERVAL};
+	HAL_VTIMER_Init(&VTIMER_InitStruct);
+
+	BLEPLAT_Init();
+	if (PKAMGR_Init() == PKAMGR_ERROR)
+		while(1);
+
+	if (RNGMGR_Init() != RNGMGR_SUCCESS)
+		while(1);
+
+	/* Init the AES block */
+	AESMGR_Init();
+}
+
+void ModulesTick(void) {
+	/* Timer tick */
+	HAL_VTIMER_Tick();
+
+	/* Bluetooth stack tick */
+	BLE_STACK_Tick();
+
+	/* NVM manager tick */
+	NVMDB_Tick();
+}
+
+void hci_hardware_error_event(uint8_t Hardware_Code) {
+	if (Hardware_Code <= 0x03) {
+		printf("Error code: 0x%02X\n", Hardware_Code);
+		NVIC_SystemReset();
+	}
+}
+
+void aci_hal_fw_error_event(uint8_t FW_Error_Type, uint8_t Data_Length, uint8_t Data[]) {
+	if (FW_Error_Type <= 0x03) {
+		uint16_t connHandle;
+
+		/* Data field is the connection handle where error has occurred */
+		connHandle = LE_TO_HOST_16(Data);
+
+		aci_gap_terminate(connHandle, BLE_ERROR_TERMINATED_REMOTE_USER);
 	}
 }
 
@@ -106,6 +147,8 @@ void Error_Handler(void)
 	printf("Error_Handler\n");
 	while(1);
 }
+
+
 
 #ifdef  USE_FULL_ASSERT
 /**
@@ -126,4 +169,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Ind�stria e Com�rcio LTDA ****** END OF FILE ****/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

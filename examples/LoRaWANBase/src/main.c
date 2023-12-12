@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2023 Hana Electronics Indústria e Comércio LTDA
+ Copyright (c) 2023 Hana Electronics Industria e Comercio LTDA
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,6 +39,9 @@
 
 RNG_HandleTypeDef hrng;
 
+lora_AppData_t package; //variable to storage the message to be sent
+uint32_t timeToSend; // time to send the next lorawan package
+uint32_t NextSendTime = 0; // variable to storage the next time to sent the next package
 /*
 LoRaWAN related configs
 #include "lorawandefines.h"
@@ -81,14 +84,26 @@ int main(void) {
 	}
 #endif
 
-
 	LORAWAN_init(DEFAULT_REGION);
+
+	timeToSend = 10000; //10 seconds
+
+	// Constructs the package to be sent via LoRaWAN (LoRaWAN settings found in lorawandefinas.h file)
+	package.Buff = (uint8_t*)"Hi!! this is a LoRaWAN package!"; // Message
+	package.BuffSize = strlen((const char*)package.Buff); // Message size
+	package.Port = LORAWAN_APP_PORT;					//LoRaWAN port
+
 	while (1){
 		LORAWAN_tick();
+		// only sends the package when the time is reached
+		if (HAL_GetTick() >= NextSendTime) {
+			NextSendTime += timeToSend; // adding the next time that the package will be sent
+			// Sends the LoRaWAN package
+			printf("\n\n==== Sending package ===\n\n");
+			lorawan_send(&package);	//function that sends the package
+		}
 	}
-
 }
-
 /**
  * @brief  This function is executed in case of error occurrence.
  * @retval None
@@ -114,7 +129,6 @@ void assert_failed(uint8_t* file, uint32_t line)
 { 
 	/* User can add his own implementation to report the file name and line number,
     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-	F
 	/* Infinite loop */
 	while (1)
 	{
@@ -122,4 +136,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/***** Hana Electronics Indústria e Comércio LTDA ****** END OF FILE ****/
+/***** Hana Electronics Industria e Comercio LTDA ****** END OF FILE ****/
