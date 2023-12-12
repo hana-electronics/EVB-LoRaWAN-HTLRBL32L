@@ -67,7 +67,7 @@
  * \remark see STATIC_DEVICE_EUI comments
  */
 
-#define LORAWAN_DEVICE_EUI                                 {0xDE,0xAD,0xBE,0xEF,0xBE,0xEF,0xDE,0xAD}
+#define LORAWAN_DEVICE_EUI                                 {0xDE,0xAD,0xBE,0xEF,0xBE,0xEF,0xDE,0x33}
 
 #endif
 
@@ -138,7 +138,7 @@
  * LoRaWAN Default data Rate Data Rate
  * @note Please note that BL is used only when ADR is disabled
  */
-#define LORAWAN_DEFAULT_DATA_RATE DR_4
+#define LORAWAN_DEFAULT_DATA_RATE DR_5
 
 /*!
  * LoRaWAN application port
