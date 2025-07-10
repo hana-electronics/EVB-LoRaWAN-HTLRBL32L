@@ -1,7 +1,7 @@
 # Evaluation Board - LoRa® e Bluetooth Low Energy®
 
 <div align="center">
-  <img src='./docs/images/evb-lora.png' id="topology" height="35%" width="35%"/>
+  <img src='./docs/images/evb-lora.png' id="topology" height="350px" width="350px"/>
 </div
 <br>
 <div align="justify">
